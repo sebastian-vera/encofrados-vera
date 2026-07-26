@@ -12,7 +12,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
   <link rel="canonical" href="https://encofradosvera.cl/"/>
 
-  <!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp) ── -->
+  <!-- ── OPEN GRAPH ── -->
   <meta property="og:type"        content="website"/>
   <meta property="og:url"         content="https://encofradosvera.cl/"/>
   <meta property="og:title"       content="<%= title %>"/>
@@ -51,16 +51,11 @@
       "addressRegion": "Región Metropolitana",
       "addressCountry": "CL"
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": -33.4489,
-      "longitude": -70.6693
-    },
+    "geo": { "@type": "GeoCoordinates", "latitude": -33.4489, "longitude": -70.6693 },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-      "opens": "08:30",
-      "closes": "18:00"
+      "opens": "08:30", "closes": "18:00"
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -80,47 +75,56 @@
   <!-- ── FAVICONS ── -->
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png"/>
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png"/>
-  <link rel="apple-touch-icon"                    href="/images/favicon.png"/>
-  <meta name="theme-color" content="#ee0117"/>
+  <link rel="apple-touch-icon" href="/images/favicon.png"/>
+  <meta name="theme-color" content="#E4E1DA"/>
 
-  <!-- ── PERFORMANCE ── -->
+  <!-- ── FUENTES ── -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/></noscript>
+  <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"/></noscript>
   <link rel="stylesheet" href="/css/landing.css"/>
 
   <!-- ── CLOUDFLARE TURNSTILE ── -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
-  <!-- ── GOOGLE ANALYTICS 4 ── -->
-  <% if (gaId) { %>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= gaId %>"></script>
+  <!-- ── GOOGLE ANALYTICS 4 (con Consent Mode v2) ── -->
+  <!-- El almacenamiento queda DENEGADO por defecto; se concede solo si el
+       usuario acepta las cookies en el banner (ver landing.js). -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      functionality_storage: 'granted',
+      security_storage: 'granted',
+      wait_for_update: 500
+    });
     gtag('js', new Date());
-    gtag('config', '<%= gaId %>');
+    gtag('config', 'G-CGXMHEM8RW', { anonymize_ip: true });
   </script>
-  <% } %>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGXMHEM8RW"></script>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
-     NAV
-════════════════════════════════════════════ -->
+<!-- ═══════════ NAV ═══════════ -->
 <nav id="nav">
   <div class="ni">
     <a href="#" class="logo">
-      <img src="/images/logo-vera-blanco.png" alt="Encofrados Vera" class="logo-img" fetchpriority="high" width="200" height="73"/>
+      <img src="/images/logo-vera.png" alt="Encofrados Vera" class="logo-img" fetchpriority="high" width="200" height="73"/>
     </a>
     <ul class="nl" id="nl">
-      <li><a href="#productos">Productos</a></li>
-      <li><a href="#sistemas">Sistemas</a></li>
+      <li><a href="#productos">Catálogo</a></li>
+      <li><a href="#sistemas">Compatibilidad</a></li>
       <li><a href="#ventajas">Ventajas</a></li>
       <li><a href="#proceso">Proceso</a></li>
       <li><a href="#cobertura">Cobertura</a></li>
-      <li><a href="#contacto" class="nc">Cotizar ahora</a></li>
+      <li><a href="#contacto" class="nc">Cotizar</a></li>
     </ul>
     <button class="hb" onclick="tmenu()" aria-label="Abrir menú">
       <span></span><span></span><span></span>
@@ -128,668 +132,521 @@
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════════════
-     HERO
-════════════════════════════════════════════ -->
+<!-- ═══════════ HERO ═══════════ -->
 <section id="hero">
-  <div class="hbg"></div>
-  <div class="hgrid"></div>
+  <div class="hero-grid"></div>
   <div class="wrap">
     <div class="hc">
 
-      <div class="hl-l">
-        <span class="tag ai">Arriendo y venta de moldajes · Chile</span>
+      <div class="hero-l">
+        <span class="eyebrow ai">Arriendo y venta de moldajes · Chile</span>
+        <div class="hero-code ai d1">SISTEMA DE ENCOFRADO / EV-CL</div>
         <h1 class="ai d1">
-          El molde correcto<br/>
-          <span class="ga">para cada</span><br/>
-          hormigón
+          El molde<br/>
+          <span class="ln2">correcto</span><br/>
+          para cada vaciado
         </h1>
         <p class="ai d2">
-          Encofrados Vera provee moldajes y encofrados para muros, losas, columnas,
-          fundaciones y obra civil — compatibles con los principales sistemas del
-          mercado chileno, con asesoría técnica en terreno y despacho a todo el país.
+          Moldajes y encofrados para muros, losas, columnas, fundaciones y obra
+          civil — compatibles con los principales sistemas del mercado chileno,
+          con asesoría de despiece en terreno y despacho a todo el país.
         </p>
         <div class="ha ai d3">
-          <a href="#contacto" class="bp">
-            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-            </svg>
+          <a href="#contacto" class="btn btn-primary">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             Solicitar cotización
           </a>
-          <a href="#productos" class="bg">Ver catálogo completo ↓</a>
+          <a href="#productos" class="btn btn-ghost">Ver catálogo</a>
         </div>
-        <div class="hs ai d3">
-          <div><div class="hs-n">16</div><div class="hs-l">Sistemas disponibles</div></div>
-          <div><div class="hs-n">+19</div><div class="hs-l">Años en el rubro</div></div>
-          <div><div class="hs-n">4</div><div class="hs-l">Bases operativas</div></div>
+        <div class="hstats ai d4">
+          <div class="hstat"><div class="hstat-n">16</div><div class="hstat-l">Sistemas</div></div>
+          <div class="hstat"><div class="hstat-n">+19</div><div class="hstat-l">Años en rubro</div></div>
+          <div class="hstat"><div class="hstat-n">4</div><div class="hstat-l">Bases operativas</div></div>
         </div>
       </div>
 
-      <div class="hr ai d2">
-        <div class="hv">
-          <div class="hcard">
-            <div class="hcb">Disponible</div>
-            <div class="hci">🧱</div>
-            <div class="hct">Moldaje de Muro</div>
-            <div class="hcs">Modular de acero y liviano manoportable</div>
-            <div class="hcl">
-              <span class="hcc">Paneles hasta 2,70 m</span>
-              <span class="hcc">Presión 60–80 kN/m²</span>
-              <span class="hcc">Esquinas y compensaciones</span>
-            </div>
-          </div>
-          <div class="hcard">
-            <div class="hcb">Disponible</div>
-            <div class="hci">🏗️</div>
-            <div class="hct">Moldaje de Losa</div>
-            <div class="hcs">Vigas H20, cabezales y puntales regulables</div>
-          </div>
-          <div class="hcard">
-            <div class="hcb">Disponible</div>
-            <div class="hci">⚙️</div>
-            <div class="hct">Andamios y Accesorios</div>
-            <div class="hcs">Multidireccional, fachada y consolas</div>
-          </div>
-        </div>
+      <!-- SIGNATURE: panel de moldaje con anclajes y cotas -->
+      <div class="hpanel ai d2" aria-hidden="true">
+        <svg viewBox="0 0 420 486" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Panel de moldaje">
+          <defs>
+            <linearGradient id="ph" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#D2A05A"/>
+              <stop offset="0.5" stop-color="#C58A3D"/>
+              <stop offset="1" stop-color="#AE7930"/>
+            </linearGradient>
+          </defs>
+
+          <!-- cota superior -->
+          <g font-family="'IBM Plex Mono',monospace" font-size="12" fill="#52565E">
+            <line x1="46" y1="24" x2="374" y2="24" stroke="#8A8D91" stroke-width="1"/>
+            <line x1="46" y1="19" x2="46" y2="29" stroke="#8A8D91" stroke-width="1"/>
+            <line x1="374" y1="19" x2="374" y2="29" stroke="#8A8D91" stroke-width="1"/>
+            <rect x="185" y="14" width="50" height="18" fill="#E4E1DA"/>
+            <text x="210" y="27" text-anchor="middle">0,90 m</text>
+          </g>
+
+          <!-- marco de acero -->
+          <rect x="46" y="40" width="328" height="404" rx="4" fill="#22252A"/>
+          <!-- cara fenólica -->
+          <rect x="58" y="52" width="304" height="380" rx="2" fill="url(#ph)"/>
+
+          <!-- perfiles del marco (costillas) -->
+          <g stroke="#96682A" stroke-width="2" opacity="0.55">
+            <line x1="160" y1="52" x2="160" y2="432"/>
+            <line x1="260" y1="52" x2="260" y2="432"/>
+            <line x1="58" y1="147" x2="362" y2="147"/>
+            <line x1="58" y1="242" x2="362" y2="242"/>
+            <line x1="58" y1="337" x2="362" y2="337"/>
+          </g>
+
+          <!-- perforaciones de anclaje (tie-holes) -->
+          <g>
+            <!-- fila util donde cruzan costillas -->
+            <g fill="#1A1C20">
+              <circle cx="110" cy="147" r="7"/><circle cx="210" cy="147" r="7"/><circle cx="310" cy="147" r="7"/>
+              <circle cx="110" cy="242" r="7"/><circle cx="210" cy="242" r="7"/><circle cx="310" cy="242" r="7"/>
+              <circle cx="110" cy="337" r="7"/><circle cx="210" cy="337" r="7"/><circle cx="310" cy="337" r="7"/>
+            </g>
+            <g fill="none" stroke="#DCA85E" stroke-width="1.5">
+              <circle cx="110" cy="147" r="10"/><circle cx="210" cy="147" r="10"/><circle cx="310" cy="147" r="10"/>
+              <circle cx="110" cy="242" r="10"/><circle cx="210" cy="242" r="10"/><circle cx="310" cy="242" r="10"/>
+              <circle cx="110" cy="337" r="10"/><circle cx="210" cy="337" r="10"/><circle cx="310" cy="337" r="10"/>
+            </g>
+          </g>
+
+          <!-- marca de tiza roja (precisión) -->
+          <g stroke="#EE0117" stroke-width="2.4" fill="none" stroke-linecap="round">
+            <path d="M74 402 l16 14 l26 -30"/>
+          </g>
+
+          <!-- cota lateral: presión -->
+          <g font-family="'IBM Plex Mono',monospace" font-size="12" fill="#52565E">
+            <line x1="392" y1="52" x2="392" y2="432" stroke="#8A8D91" stroke-width="1"/>
+            <line x1="387" y1="52" x2="397" y2="52" stroke="#8A8D91" stroke-width="1"/>
+            <line x1="387" y1="432" x2="397" y2="432" stroke="#8A8D91" stroke-width="1"/>
+            <text x="392" y="248" text-anchor="middle" transform="rotate(90 392 244)">60–80 kN/m²</text>
+          </g>
+
+          <!-- etiqueta de referencia -->
+          <g font-family="'IBM Plex Mono',monospace">
+            <text x="58" y="470" font-size="12.5" font-weight="600" fill="#1A1C20">MUR·01</text>
+            <text x="362" y="470" font-size="11" fill="#8A8D91" text-anchor="end">PLACA FENÓLICA · 15 mm</text>
+          </g>
+        </svg>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     PRODUCTOS
-════════════════════════════════════════════ -->
+<!-- ═══════════ PRODUCTOS ═══════════ -->
 <section id="productos">
   <div class="wrap">
-    <div class="sh">
-      <span class="tag" data-r>Nuestro catálogo</span>
-      <h2 data-r class="t1">Encofrados para cada <span class="hl">elemento de hormigón</span></h2>
+    <div class="sh center">
+      <div class="plate" style="justify-content:center" data-r>01 — Catálogo</div>
+      <h2 data-r class="t1">Encofrados para cada <span class="accent">elemento de hormigón</span></h2>
       <p data-r class="t2">Equipos revisados, con piezas completas y respaldo técnico. Arriendo, venta y asesoría de despiece incluidos.</p>
     </div>
     <div class="fg">
 
-      <!-- Moldaje de muro modular -->
       <div class="fc" data-r>
         <div class="fct">
-          <div class="fi">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
-              <rect x="3" y="4" width="18" height="16" rx="1"/>
-              <path stroke-linecap="round" d="M3 9.5h18M3 15h18M9 4v5.5M15 9.5V15M9 15v5"/>
-            </svg>
-          </div>
-          <div class="fn">01</div>
+          <div class="fi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1"/><path stroke-linecap="round" d="M3 9.5h18M3 15h18M9 4v5.5M15 9.5V15M9 15v5"/></svg></div>
+          <div class="fcode">MUR·01</div>
         </div>
         <div class="ftitle">Moldaje de Muro Modular</div>
-        <div class="fd">Paneles de marco de acero con placa fenólica, para muros de hormigón armado en altura. Alta presión admisible y mínimo número de anclajes por m².</div>
-        <div class="fs">
-          <span class="fsp">Paneles 0,30 a 2,70 m</span>
-          <span class="fsp">60–80 kN/m²</span>
-          <span class="fsp">Esquinas interior/exterior</span>
-          <span class="fsp">Compensaciones</span>
-        </div>
+        <div class="fd">Paneles de marco de acero con placa fenólica para muros de hormigón armado en altura. Alta presión admisible y mínimo número de anclajes por m².</div>
+        <div class="fs"><span class="fsp">0,30–2,70 m</span><span class="fsp">60–80 kN/m²</span><span class="fsp">Esquinas int/ext</span><span class="fsp">Compensaciones</span></div>
       </div>
 
-      <!-- Moldaje de muro liviano -->
       <div class="fc t1" data-r>
         <div class="fct">
-          <div class="fi">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
-              <rect x="4" y="3" width="7" height="18" rx="1"/>
-              <rect x="13" y="3" width="7" height="18" rx="1"/>
-              <path stroke-linecap="round" d="M7.5 11h0M16.5 11h0"/>
-            </svg>
-          </div>
-          <div class="fn">02</div>
+          <div class="fi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.6"><rect x="4" y="3" width="7" height="18" rx="1"/><rect x="13" y="3" width="7" height="18" rx="1"/><path stroke-linecap="round" d="M7.5 11h0M16.5 11h0"/></svg></div>
+          <div class="fcode">MUR·02</div>
         </div>
         <div class="ftitle">Moldaje Liviano / Manoportable</div>
         <div class="fd">Sistemas de aluminio y acero liviano para obras sin grúa: viviendas, muros de contención bajos, cámaras y trabajos de terminación.</div>
-        <div class="fs">
-          <span class="fsp">Sin grúa</span>
-          <span class="fsp">Desde 20 kg/panel</span>
-          <span class="fsp">Montaje rápido</span>
-        </div>
+        <div class="fs"><span class="fsp">Sin grúa</span><span class="fsp">Desde 20 kg/panel</span><span class="fsp">Montaje rápido</span></div>
       </div>
 
-      <!-- Moldaje de losa -->
       <div class="fc t2" data-r>
         <div class="fct">
-          <div class="fi">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
-              <path stroke-linecap="round" d="M2 7h20M2 10h20"/>
-              <path stroke-linecap="round" d="M6 10v11M12 10v11M18 10v11M4 21h4M10 21h4M16 21h4"/>
-            </svg>
-          </div>
-          <div class="fn">03</div>
+          <div class="fi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.6"><path stroke-linecap="round" d="M2 7h20M2 10h20"/><path stroke-linecap="round" d="M6 10v11M12 10v11M18 10v11M4 21h4M10 21h4M16 21h4"/></svg></div>
+          <div class="fcode">LOS·01</div>
         </div>
         <div class="ftitle">Moldaje de Losa</div>
-        <div class="fd">Sistema de vigas de madera H20, cabezales de descimbre y puntales regulables. Permite liberar el moldaje manteniendo el apuntalamiento de seguridad.</div>
-        <div class="fs">
-          <span class="fsp">Vigas H20 · 1,90 a 5,90 m</span>
-          <span class="fsp">Cabezal de descimbre</span>
-          <span class="fsp">Tableros 18 y 21 mm</span>
-        </div>
+        <div class="fd">Vigas de madera H20, cabezales de descimbre y puntales regulables. Permite liberar el moldaje manteniendo el apuntalamiento de seguridad.</div>
+        <div class="fs"><span class="fsp">H20 · 1,90–5,90 m</span><span class="fsp">Cabezal descimbre</span><span class="fsp">Tableros 18/21 mm</span></div>
       </div>
 
-      <!-- Mesas de encofrado -->
       <div class="fc" data-r>
         <div class="fct">
-          <div class="fi">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
-              <path stroke-linecap="round" d="M2 8h20v2H2z"/>
-              <path stroke-linecap="round" d="M5 10v9M19 10v9M5 19h3M16 19h3M8 14h8"/>
-            </svg>
-          </div>
-          <div class="fn">04</div>
+          <div class="fi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.6"><path stroke-linecap="round" d="M2 8h20v2H2z"/><path stroke-linecap="round" d="M5 10v9M19 10v9M5 19h3M16 19h3M8 14h8"/></svg></div>
+          <div class="fcode">LOS·02</div>
         </div>
         <div class="ftitle">Mesas de Encofrado</div>
         <div class="fd">Mesas prearmadas y mesas voladoras para losas de gran superficie. Ciclos de hormigonado más rápidos y menos horas hombre por m².</div>
-        <div class="fs">
-          <span class="fsp">Prearmadas en obra</span>
-          <span class="fsp">Traslado con grúa</span>
-          <span class="fsp">Alto rendimiento</span>
-        </div>
+        <div class="fs"><span class="fsp">Prearmadas</span><span class="fsp">Traslado con grúa</span><span class="fsp">Alto rendimiento</span></div>
       </div>
 
-      <!-- Columnas -->
       <div class="fc t1" data-r>
         <div class="fct">
-          <div class="fi">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
-              <rect x="8" y="3" width="8" height="18" rx="1"/>
-              <path stroke-linecap="round" d="M5 7h14M5 12h14M5 17h14"/>
-            </svg>
-          </div>
-          <div class="fn">05</div>
+          <div class="fi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.6"><rect x="8" y="3" width="8" height="18" rx="1"/><path stroke-linecap="round" d="M5 7h14M5 12h14M5 17h14"/></svg></div>
+          <div class="fcode">COL·01</div>
         </div>
-        <div class="ftitle">Moldaje de Columnas y Pilares</div>
+        <div class="ftitle">Columnas y Pilares</div>
         <div class="fd">Moldajes de sección cuadrada, rectangular y circular, con regulación por escalones y acabado visto. Incluye plataforma de hormigonado y accesos.</div>
-        <div class="fs">
-          <span class="fsp">Cuadrada / rectangular</span>
-          <span class="fsp">Circular Ø 25 a 120 cm</span>
-          <span class="fsp">Hormigón visto</span>
-        </div>
+        <div class="fs"><span class="fsp">Cuadrada/rectangular</span><span class="fsp">Circular Ø25–120 cm</span><span class="fsp">Hormigón visto</span></div>
       </div>
 
-      <!-- Fundaciones -->
       <div class="fc t2" data-r>
         <div class="fct">
-          <div class="fi">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
-              <path stroke-linecap="round" d="M2 14h20M4 14V9h16v5"/>
-              <path stroke-linecap="round" d="M2 18h20M7 14v4M17 14v4"/>
-            </svg>
-          </div>
-          <div class="fn">06</div>
+          <div class="fi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.6"><path stroke-linecap="round" d="M2 14h20M4 14V9h16v5"/><path stroke-linecap="round" d="M2 18h20M7 14v4M17 14v4"/></svg></div>
+          <div class="fcode">FUN·01</div>
         </div>
         <div class="ftitle">Fundaciones, Poyos y Radieres</div>
         <div class="fd">Encofrado de zapatas, dados, vigas de fundación y cámaras. Sistemas de bajo peso, resistentes a terreno húmedo y fáciles de alinear.</div>
-        <div class="fs">
-          <span class="fsp">Zapatas y dados</span>
-          <span class="fsp">Vigas de fundación</span>
-          <span class="fsp">Cámaras y cámaras técnicas</span>
-        </div>
+        <div class="fs"><span class="fsp">Zapatas y dados</span><span class="fsp">Vigas de fundación</span><span class="fsp">Cámaras técnicas</span></div>
       </div>
 
-      <!-- Trepante -->
       <div class="fc" data-r>
         <div class="fct">
-          <div class="fi">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
-              <path stroke-linecap="round" d="M12 21V3M8 6l4-3 4 3"/>
-              <rect x="4" y="10" width="16" height="4" rx="1"/>
-              <path stroke-linecap="round" d="M4 18h16"/>
-            </svg>
-          </div>
-          <div class="fn">07</div>
+          <div class="fi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.6"><path stroke-linecap="round" d="M12 21V3M8 6l4-3 4 3"/><rect x="4" y="10" width="16" height="4" rx="1"/><path stroke-linecap="round" d="M4 18h16"/></svg></div>
+          <div class="fcode">TRE·01</div>
         </div>
         <div class="ftitle">Sistemas Trepantes</div>
         <div class="fd">Consolas trepantes y autotrepantes para núcleos, pilas de puente y muros de gran altura. Plataformas de trabajo integradas y protección perimetral.</div>
-        <div class="fs">
-          <span class="fsp">Núcleos de ascensor</span>
-          <span class="fsp">Pilas de puente</span>
-          <span class="fsp">Plataforma integrada</span>
-        </div>
+        <div class="fs"><span class="fsp">Núcleos de ascensor</span><span class="fsp">Pilas de puente</span><span class="fsp">Plataforma integrada</span></div>
       </div>
 
-      <!-- Puntales -->
       <div class="fc t1" data-r>
         <div class="fct">
-          <div class="fi">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
-              <path stroke-linecap="round" d="M12 3v18M8 3h8M8 21h8"/>
-              <circle cx="12" cy="10" r="2.2"/>
-            </svg>
-          </div>
-          <div class="fn">08</div>
+          <div class="fi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.6"><path stroke-linecap="round" d="M12 3v18M8 3h8M8 21h8"/><circle cx="12" cy="10" r="2.2"/></svg></div>
+          <div class="fcode">APU·01</div>
         </div>
         <div class="ftitle">Puntales y Torres de Carga</div>
-        <div class="fd">Puntales metálicos regulables (alza primas) y torres de carga para grandes alturas y cargas puntuales elevadas, con husillos y bases regulables.</div>
-        <div class="fs">
-          <span class="fsp">Puntales 1,8 a 5,5 m</span>
-          <span class="fsp">Torres de carga</span>
-          <span class="fsp">Husillos y bases</span>
-        </div>
+        <div class="fd">Puntales metálicos regulables y torres de carga para grandes alturas y cargas puntuales elevadas, con husillos y bases regulables.</div>
+        <div class="fs"><span class="fsp">Puntales 1,8–5,5 m</span><span class="fsp">Torres de carga</span><span class="fsp">Husillos y bases</span></div>
       </div>
 
-      <!-- Andamios -->
       <div class="fc t2" data-r>
         <div class="fct">
-          <div class="fi">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
-              <path stroke-linecap="round" d="M4 3v18M12 3v18M20 3v18M4 8h16M4 14h16M4 20h16"/>
-            </svg>
-          </div>
-          <div class="fn">09</div>
+          <div class="fi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.6"><path stroke-linecap="round" d="M4 3v18M12 3v18M20 3v18M4 8h16M4 14h16M4 20h16"/></svg></div>
+          <div class="fcode">AND·01</div>
         </div>
         <div class="ftitle">Andamios Multidireccional y Fachada</div>
         <div class="fd">Andamio modular de roseta y andamio de marco para fachada, con plataformas de acero, rodapiés, barandas y accesos certificados.</div>
-        <div class="fs">
-          <span class="fsp">Multidireccional</span>
-          <span class="fsp">Fachada / marco</span>
-          <span class="fsp">Torres móviles</span>
-        </div>
+        <div class="fs"><span class="fsp">Multidireccional</span><span class="fsp">Fachada/marco</span><span class="fsp">Torres móviles</span></div>
       </div>
 
-      <!-- Plataformas y seguridad -->
       <div class="fc" data-r>
         <div class="fct">
-          <div class="fi">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
-              <path stroke-linecap="round" d="M3 12h18M3 12v7M21 12v7"/>
-              <path stroke-linecap="round" d="M6 12V6h12v6M6 16h12"/>
-            </svg>
-          </div>
-          <div class="fn">10</div>
+          <div class="fi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.6"><path stroke-linecap="round" d="M3 12h18M3 12v7M21 12v7"/><path stroke-linecap="round" d="M6 12V6h12v6M6 16h12"/></svg></div>
+          <div class="fcode">SEG·01</div>
         </div>
         <div class="ftitle">Plataformas y Consolas de Seguridad</div>
         <div class="fd">Consolas de hormigonado, plataformas de trabajo en borde de losa y protección perimetral. Cumplimiento del estándar de trabajo en altura.</div>
-        <div class="fs">
-          <span class="fsp">Consolas de hormigonado</span>
-          <span class="fsp">Protección perimetral</span>
-          <span class="fsp">Redes y barandas</span>
-        </div>
+        <div class="fs"><span class="fsp">Consolas hormigonado</span><span class="fsp">Protección perimetral</span><span class="fsp">Redes y barandas</span></div>
       </div>
 
-      <!-- Vigas y tableros -->
       <div class="fc t1" data-r>
         <div class="fct">
-          <div class="fi">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
-              <rect x="2" y="5" width="20" height="4" rx="1"/>
-              <rect x="2" y="14" width="20" height="5" rx="1"/>
-              <path stroke-linecap="round" d="M6 9v5M18 9v5"/>
-            </svg>
-          </div>
-          <div class="fn">11</div>
+          <div class="fi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.6"><rect x="2" y="5" width="20" height="4" rx="1"/><rect x="2" y="14" width="20" height="5" rx="1"/><path stroke-linecap="round" d="M6 9v5M18 9v5"/></svg></div>
+          <div class="fcode">MAT·01</div>
         </div>
         <div class="ftitle">Vigas H20 y Tableros Fenólicos</div>
         <div class="fd">Vigas de madera laminada H20 y tableros fenólicos / terciado estructural de 18 y 21 mm, para moldajes a medida y reposición de placa.</div>
-        <div class="fs">
-          <span class="fsp">Vigas H20</span>
-          <span class="fsp">Tableros 18 / 21 mm</span>
-          <span class="fsp">Corte a medida</span>
-        </div>
+        <div class="fs"><span class="fsp">Vigas H20</span><span class="fsp">Tableros 18/21 mm</span><span class="fsp">Corte a medida</span></div>
       </div>
 
-      <!-- Accesorios -->
       <div class="fc fc-accent t2" data-r>
         <div class="fct">
-          <div class="fi">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
-              <circle cx="12" cy="12" r="3"/>
-              <path stroke-linecap="round" d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>
-            </svg>
-          </div>
-          <div class="fn">12</div>
+          <div class="fi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></div>
+          <div class="fcode">ACC·01</div>
         </div>
         <div class="ftitle">Accesorios, Fijaciones y Asesoría</div>
-        <div class="fd">Barras de anclaje, tuercas de placa, conos, alineadores, escuadras, desmoldante y todo el consumible. Además elaboramos el plano de despiece de tu obra.</div>
-        <div class="fs">
-          <span class="fsp">Barras y anclajes</span>
-          <span class="fsp">Alineadores y escuadras</span>
-          <span class="fsp">Desmoldante</span>
-          <span class="fsp">Plano de despiece</span>
-        </div>
+        <div class="fd">Barras de anclaje, tuercas de placa, conos, alineadores, escuadras, desmoldante y consumibles. Elaboramos el plano de despiece de tu obra.</div>
+        <div class="fs"><span class="fsp">Barras y anclajes</span><span class="fsp">Alineadores</span><span class="fsp">Desmoldante</span><span class="fsp">Plano de despiece</span></div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     GALERÍA
-════════════════════════════════════════════ -->
+<!-- ═══════════ GALERÍA ═══════════ -->
 <section id="galeria">
   <div class="wrap">
-    <div class="sh">
-      <span class="tag" data-r>En terreno</span>
-      <h2 data-r class="t1">Nuestros sistemas <span class="hl">en obra</span></h2>
+    <div class="sh center">
+      <div class="plate" style="justify-content:center" data-r>02 — En terreno</div>
+      <h2 data-r class="t1">Nuestros sistemas <span class="accent">en obra</span></h2>
       <p data-r class="t2">Soluciones montadas en edificación en altura, obra civil e industria.</p>
     </div>
     <div class="gal">
-
-      <div class="gal-card" data-r>
-        <img src="/images/productos/moldaje-muro-modular.jpg" alt="Moldaje de muro modular de acero" loading="lazy" width="1200" height="800"/>
-        <div class="gal-overlay">
-          <span class="gal-tag">Moldaje de Muro</span>
-          <p>Panel modular con anclaje pasante</p>
-        </div>
-      </div>
-
-      <div class="gal-card t1" data-r>
-        <img src="/images/productos/moldaje-losa.jpg" alt="Moldaje de losa con vigas H20 y tablero fenólico" loading="lazy" width="1200" height="800"/>
-        <div class="gal-overlay">
-          <span class="gal-tag">Moldaje de Losa</span>
-          <p>Vigas H20 + tablero fenólico</p>
-        </div>
-      </div>
-
-      <div class="gal-card t2" data-r>
-        <img src="/images/productos/puntales-torres.jpg" alt="Puntales metálicos regulables apuntalando una losa" loading="lazy" width="1200" height="800"/>
-        <div class="gal-overlay">
-          <span class="gal-tag">Puntales</span>
-          <p>Apuntalamiento y descimbre seguro</p>
-        </div>
-      </div>
-
-      <div class="gal-card t1" data-r>
-        <img src="/images/productos/moldaje-columna.jpg" alt="Moldaje circular de columna de hormigón" loading="lazy" width="1200" height="800"/>
-        <div class="gal-overlay">
-          <span class="gal-tag">Columnas</span>
-          <p>Sección circular y rectangular</p>
-        </div>
-      </div>
-
-      <div class="gal-card t2" data-r>
-        <img src="/images/productos/moldaje-fundacion.jpg" alt="Encofrado de fundaciones y muros bajos" loading="lazy" width="1200" height="800"/>
-        <div class="gal-overlay">
-          <span class="gal-tag">Fundaciones</span>
-          <p>Zapatas, dados y vigas de fundación</p>
-        </div>
-      </div>
-
-      <div class="gal-card t3" data-r>
-        <img src="/images/productos/obra-civil.jpg" alt="Encofrado y falso puente en obra civil" loading="lazy" width="1200" height="800"/>
-        <div class="gal-overlay">
-          <span class="gal-tag">Obra Civil</span>
-          <p>Puentes, muros de contención y pilas</p>
-        </div>
-      </div>
-
-      <div class="gal-card t2" data-r>
-        <img src="/images/productos/andamios.jpg" alt="Andamio multidireccional montado en obra" loading="lazy" width="1200" height="800"/>
-        <div class="gal-overlay">
-          <span class="gal-tag">Andamios</span>
-          <p>Multidireccional y de fachada</p>
-        </div>
-      </div>
-
-      <div class="gal-card t3" data-r>
-        <img src="/images/productos/trepante.jpg" alt="Sistema trepante en núcleo de hormigón" loading="lazy" width="1200" height="800"/>
-        <div class="gal-overlay">
-          <span class="gal-tag">Trepantes</span>
-          <p>Núcleos y muros de gran altura</p>
-        </div>
-      </div>
-
-      <div class="gal-card t1" data-r>
-        <img src="/images/productos/escaleras.jpg" alt="Encofrado de escalera de hormigón" loading="lazy" width="1200" height="800"/>
-        <div class="gal-overlay">
-          <span class="gal-tag">Escaleras</span>
-          <p>Moldajes a medida y accesos de obra</p>
-        </div>
-      </div>
-
+      <div class="gal-card" data-r><img src="/images/productos/moldaje-muro-modular.jpg" alt="Moldaje de muro modular de acero" loading="lazy" width="1200" height="800"/><div class="gal-overlay"><span class="gal-tag">MUR · Muro</span><p>Panel modular con anclaje pasante</p></div></div>
+      <div class="gal-card t1" data-r><img src="/images/productos/moldaje-losa.jpg" alt="Moldaje de losa con vigas H20 y tablero fenólico" loading="lazy" width="1200" height="800"/><div class="gal-overlay"><span class="gal-tag">LOS · Losa</span><p>Vigas H20 + tablero fenólico</p></div></div>
+      <div class="gal-card t2" data-r><img src="/images/productos/puntales-torres.jpg" alt="Puntales metálicos regulables apuntalando una losa" loading="lazy" width="1200" height="800"/><div class="gal-overlay"><span class="gal-tag">APU · Puntales</span><p>Apuntalamiento y descimbre seguro</p></div></div>
+      <div class="gal-card t1" data-r><img src="/images/productos/moldaje-columna.jpg" alt="Moldaje circular de columna de hormigón" loading="lazy" width="1200" height="800"/><div class="gal-overlay"><span class="gal-tag">COL · Columnas</span><p>Sección circular y rectangular</p></div></div>
+      <div class="gal-card t2" data-r><img src="/images/productos/moldaje-fundacion.jpg" alt="Encofrado de fundaciones y muros bajos" loading="lazy" width="1200" height="800"/><div class="gal-overlay"><span class="gal-tag">FUN · Fundaciones</span><p>Zapatas, dados y vigas de fundación</p></div></div>
+      <div class="gal-card t3" data-r><img src="/images/productos/obra-civil.jpg" alt="Encofrado y falso puente en obra civil" loading="lazy" width="1200" height="800"/><div class="gal-overlay"><span class="gal-tag">CIV · Obra Civil</span><p>Puentes, muros de contención y pilas</p></div></div>
+      <div class="gal-card t2" data-r><img src="/images/productos/andamios.jpg" alt="Andamio multidireccional montado en obra" loading="lazy" width="1200" height="800"/><div class="gal-overlay"><span class="gal-tag">AND · Andamios</span><p>Multidireccional y de fachada</p></div></div>
+      <div class="gal-card t3" data-r><img src="/images/productos/trepante.jpg" alt="Sistema trepante en núcleo de hormigón" loading="lazy" width="1200" height="800"/><div class="gal-overlay"><span class="gal-tag">TRE · Trepantes</span><p>Núcleos y muros de gran altura</p></div></div>
     </div>
-    <p class="gal-note" data-r>Imágenes referenciales de sistemas de encofrado. Solicítanos el registro fotográfico de obras ejecutadas.</p>
+    <p class="gal-note" data-r>Imágenes referenciales de sistemas de encofrado · Solicita el registro fotográfico de obras ejecutadas</p>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     SISTEMAS / MARCAS
-════════════════════════════════════════════ -->
+<!-- ═══════════ SISTEMAS / MARCAS ═══════════ -->
 <section id="sistemas">
   <div class="wrap">
-    <div class="sh">
-      <span class="tag" data-r>Compatibilidad</span>
-      <h2 data-r class="t1">Trabajamos los <span class="hl">principales sistemas</span> del mercado</h2>
+    <div class="sh center">
+      <div class="plate" style="justify-content:center" data-r>03 — Compatibilidad</div>
+      <h2 data-r class="t1">Trabajamos los <span class="accent">principales sistemas</span> del mercado</h2>
       <p data-r class="t2">Suministramos equipos y componentes compatibles con los sistemas más usados en Chile. Si tu obra ya partió con una marca, complementamos el stock sin cambiar de sistema.</p>
     </div>
-    <div class="mg">
-      <div class="mc" data-r><span class="mn">PERI</span><span class="mdesc">Muro, losa, trepante y andamio</span></div>
-      <div class="mc t1" data-r><span class="mn">Doka</span><span class="mdesc">Framax, Dokaflex y trepantes</span></div>
-      <div class="mc t2" data-r><span class="mn">ULMA</span><span class="mdesc">Orma, Comain y CC-4</span></div>
-      <div class="mc t3" data-r><span class="mn">Alsina</span><span class="mdesc">Alisply y mesas de losa</span></div>
-      <div class="mc" data-r><span class="mn">Unispan</span><span class="mdesc">Aluminio monolítico y andamio</span></div>
-      <div class="mc t1" data-r><span class="mn">RMD Kwikform</span><span class="mdesc">Apuntalamiento y obra civil</span></div>
-      <div class="mc t2" data-r><span class="mn">MJ Gerüst</span><span class="mdesc">Combi, Uni y Optima</span></div>
-      <div class="mc t3" data-r><span class="mn">Layher</span><span class="mdesc">Allround y fachada</span></div>
-      <div class="mc" data-r><span class="mn">MEVA</span><span class="mdesc">Mammut y AluFix</span></div>
-      <div class="mc t1" data-r><span class="mn">EFCO</span><span class="mdesc">Obra civil pesada</span></div>
-      <div class="mc t2" data-r><span class="mn">Faresin</span><span class="mdesc">Aluminio y losa</span></div>
-      <div class="mc t3" data-r><span class="mn">Scafom-RUX</span><span class="mdesc">Modular y de marco</span></div>
+    <div class="mg" data-r>
+      <div class="mc"><span class="mn">PERI</span><span class="mdesc">Muro, losa, trepante, andamio</span></div>
+      <div class="mc"><span class="mn">Doka</span><span class="mdesc">Framax, Dokaflex, trepantes</span></div>
+      <div class="mc"><span class="mn">ULMA</span><span class="mdesc">Orma, Comain, CC-4</span></div>
+      <div class="mc"><span class="mn">Alsina</span><span class="mdesc">Alisply, mesas de losa</span></div>
+      <div class="mc"><span class="mn">Unispan</span><span class="mdesc">Aluminio monolítico, andamio</span></div>
+      <div class="mc"><span class="mn">RMD Kwikform</span><span class="mdesc">Apuntalamiento, obra civil</span></div>
+      <div class="mc"><span class="mn">MJ Gerüst</span><span class="mdesc">Combi, Uni, Optima</span></div>
+      <div class="mc"><span class="mn">Layher</span><span class="mdesc">Allround, fachada</span></div>
+      <div class="mc"><span class="mn">MEVA</span><span class="mdesc">Mammut, AluFix</span></div>
+      <div class="mc"><span class="mn">EFCO</span><span class="mdesc">Obra civil pesada</span></div>
+      <div class="mc"><span class="mn">Faresin</span><span class="mdesc">Aluminio, losa</span></div>
+      <div class="mc"><span class="mn">Scafom-RUX</span><span class="mdesc">Modular, de marco</span></div>
     </div>
     <p class="mnote" data-r>Las marcas mencionadas son propiedad de sus respectivos titulares. Encofrados Vera es una empresa independiente de arriendo y venta de moldajes; la referencia a estos sistemas indica compatibilidad técnica, no representación comercial.</p>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     VENTAJAS
-════════════════════════════════════════════ -->
+<!-- ═══════════ VENTAJAS ═══════════ -->
 <section id="ventajas">
   <div class="wrap">
-    <div class="sh">
-      <span class="tag" data-r>¿Por qué Encofrados Vera?</span>
-      <h2 data-r class="t1">La diferencia está en <span class="hl">los detalles</span></h2>
+    <div class="sh center">
+      <div class="plate" style="justify-content:center" data-r>04 — Por qué Encofrados Vera</div>
+      <h2 data-r class="t1">La diferencia está en <span class="accent">los detalles</span></h2>
       <p data-r class="t2">Venimos del mundo del andamio industrial y la logística en faena. Sabemos que un moldaje que llega incompleto detiene una obra entera.</p>
     </div>
     <div class="vg">
       <div class="vc" data-r>
-        <div class="vi">📐</div>
+        <div class="vi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M4 20L20 4M4 20l1-5 11-11 4 4-11 11-5 1z"/><path stroke-linecap="round" d="M14 6l4 4"/></svg></div>
         <div><div class="vtitle">Plano de Despiece Incluido</div><div class="vd">Analizamos tus planos y entregamos el despiece del moldaje: cantidad exacta de paneles, anclajes y accesorios por etapa. Sin sobrestock ni faltantes en terreno.</div></div>
       </div>
       <div class="vc t1" data-r>
-        <div class="vi">📦</div>
+        <div class="vi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8M12 13v8"/></svg></div>
         <div><div class="vtitle">Equipo Completo y Revisado</div><div class="vd">Cada despacho sale con checklist de piezas críticas: grapas, alineadores, husillos y consumibles. Placa fenólica revisada y repuesta cuando corresponde.</div></div>
       </div>
       <div class="vc" data-r>
-        <div class="vi">🚛</div>
+        <div class="vi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M1 3h13v13H1zM14 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="17.5" cy="18.5" r="2"/></svg></div>
         <div><div class="vtitle">Flota Propia de Transporte</div><div class="vd">Ramplas, camiones pluma y grúas horquilla propios para cargar, despachar y mover el material dentro de faena. Sin depender de terceros para el flete.</div></div>
       </div>
       <div class="vc t1" data-r>
-        <div class="vi">👷</div>
+        <div class="vi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13a9 9 0 0118 0M12 4V2M12 13a4 4 0 014 4v0H8v0a4 4 0 014-4z"/></svg></div>
         <div><div class="vtitle">Asesoría en Terreno</div><div class="vd">Acompañamos el primer armado y capacitamos a la cuadrilla en el uso correcto del sistema, presiones admisibles y secuencia de descimbre.</div></div>
       </div>
       <div class="vc" data-r>
-        <div class="vi">🔄</div>
+        <div class="vi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-3-6.7M21 3v5h-5"/></svg></div>
         <div><div class="vtitle">Arriendo Flexible</div><div class="vd">Contratos por etapa, por mes o por proyecto completo, con ampliación y devolución parcial de equipo según avance real de la obra.</div></div>
       </div>
       <div class="vc t1" data-r>
-        <div class="vi">📋</div>
+        <div class="vi"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M9 13h6M9 17h6"/></svg></div>
         <div><div class="vtitle">Respaldo Documental</div><div class="vd">Fichas técnicas, memorias de cálculo de apuntalamiento, certificados y guías de despacho valorizadas para el control administrativo de tu obra.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     INDUSTRIAS
-════════════════════════════════════════════ -->
+<!-- ═══════════ INDUSTRIAS ═══════════ -->
 <section id="industrias">
   <div class="wrap">
-    <div class="sh">
-      <span class="tag" data-r>Sectores que atendemos</span>
-      <h2 data-r class="t1">Presentes en cada <span class="hl">tipo de obra</span></h2>
+    <div class="sh center">
+      <div class="plate" style="justify-content:center" data-r>05 — Sectores</div>
+      <h2 data-r class="t1">Presentes en cada <span class="accent">tipo de obra</span></h2>
     </div>
-    <div class="ig">
-      <div class="ic" data-r><div class="ii">🏙️</div><div class="in">Edificación en Altura</div></div>
-      <div class="ic t1" data-r><div class="ii">🏘️</div><div class="in">Vivienda y Loteos</div></div>
-      <div class="ic t2" data-r><div class="ii">🌉</div><div class="in">Obra Civil y Puentes</div></div>
-      <div class="ic t3" data-r><div class="ii">⛏️</div><div class="in">Minería</div></div>
-      <div class="ic" data-r><div class="ii">⚡</div><div class="in">Energía</div></div>
-      <div class="ic t1" data-r><div class="ii">🏭</div><div class="in">Industria y Plantas</div></div>
-      <div class="ic t2" data-r><div class="ii">🚢</div><div class="in">Puertos y Astilleros</div></div>
-      <div class="ic t3" data-r><div class="ii">🛣️</div><div class="in">Infraestructura Vial</div></div>
+    <div class="ig" data-r>
+      <div class="ic"><span class="ic-dot"></span><span class="in">Edificación en Altura</span></div>
+      <div class="ic"><span class="ic-dot"></span><span class="in">Vivienda y Loteos</span></div>
+      <div class="ic"><span class="ic-dot"></span><span class="in">Obra Civil y Puentes</span></div>
+      <div class="ic"><span class="ic-dot"></span><span class="in">Minería</span></div>
+      <div class="ic"><span class="ic-dot"></span><span class="in">Energía</span></div>
+      <div class="ic"><span class="ic-dot"></span><span class="in">Industria y Plantas</span></div>
+      <div class="ic"><span class="ic-dot"></span><span class="in">Puertos y Astilleros</span></div>
+      <div class="ic"><span class="ic-dot"></span><span class="in">Infraestructura Vial</span></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     PROCESO
-════════════════════════════════════════════ -->
+<!-- ═══════════ PROCESO ═══════════ -->
 <section id="proceso">
   <div class="wrap">
-    <div class="sh">
-      <span class="tag" data-r>Cómo funciona</span>
-      <h2 data-r class="t1">Del plano al hormigón, <span class="hl">sin burocracia</span></h2>
+    <div class="sh center">
+      <div class="plate" style="justify-content:center" data-r>06 — Cómo funciona</div>
+      <h2 data-r class="t1">Del plano al hormigón, <span class="accent">sin burocracia</span></h2>
       <p data-r class="t2">En 4 pasos tienes el moldaje montado en tu obra.</p>
     </div>
     <div class="ps" data-r>
-      <div class="pst"><div class="pn">01</div><div class="pt">Envías tus planos</div><div class="pd">Formulario, correo o WhatsApp. Con la planta y los cortes basta para dimensionar el equipo.</div></div>
-      <div class="pst"><div class="pn">02</div><div class="pt">Despiece y cotización</div><div class="pd">Preparamos el despiece por etapa y te enviamos la cotización valorizada en menos de 24 horas hábiles.</div></div>
-      <div class="pst"><div class="pn">03</div><div class="pt">Despacho a faena</div><div class="pd">Coordinamos el flete con flota propia. El equipo llega revisado, con guía valorizada y listado de piezas.</div></div>
-      <div class="pst"><div class="pn">04</div><div class="pt">Montaje y soporte</div><div class="pd">Acompañamos el primer armado, capacitamos a la cuadrilla y respondemos durante todo el arriendo.</div></div>
+      <div class="pst"><div class="pn">PASO 01</div><div class="pt">Envías tus planos</div><div class="pd">Formulario, correo o WhatsApp. Con la planta y los cortes basta para dimensionar el equipo.</div></div>
+      <div class="pst"><div class="pn">PASO 02</div><div class="pt">Despiece y cotización</div><div class="pd">Preparamos el despiece por etapa y enviamos la cotización valorizada en menos de 24 horas hábiles.</div></div>
+      <div class="pst"><div class="pn">PASO 03</div><div class="pt">Despacho a faena</div><div class="pd">Coordinamos el flete con flota propia. El equipo llega revisado, con guía valorizada y listado de piezas.</div></div>
+      <div class="pst"><div class="pn">PASO 04</div><div class="pt">Montaje y soporte</div><div class="pd">Acompañamos el primer armado, capacitamos a la cuadrilla y respondemos durante todo el arriendo.</div></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     EQUIPO
-════════════════════════════════════════════ -->
+<!-- ═══════════ EQUIPO ═══════════ -->
 <section id="equipo">
   <div class="wrap">
-    <div class="sh">
-      <span class="tag" data-r>Quiénes somos</span>
-      <h2 data-r class="t1">El equipo detrás de <span class="hl">Encofrados Vera</span></h2>
-      <p data-r class="t2">Un equipo con experiencia real en obra, no sólo en catálogo.</p>
+    <div class="sh center">
+      <div class="plate" style="justify-content:center" data-r>07 — Quiénes somos</div>
+      <h2 data-r class="t1">El equipo detrás de <span class="accent">Encofrados Vera</span></h2>
+      <p data-r class="t2">Experiencia real en obra, no sólo en catálogo.</p>
     </div>
-    <div class="eq">
+    <div class="eq" style="justify-content:center">
       <div class="ec" data-r>
-        <div class="eph">
-          <img src="/images/equipo/eric-zamora.jpg" alt="Eric Zamora, Gerente General de Encofrados Vera" loading="lazy" width="600" height="600"/>
+        <div class="ec-head">
+          <div class="eph"><img src="/images/equipo/eric-zamora.jpg" alt="Eric Zamora, Gerente General de Encofrados Vera" loading="lazy" width="600" height="600"/></div>
+          <div>
+            <div class="ename">Eric Zamora</div>
+            <div class="erol">Gerente General</div>
+            <div class="edat">
+              <a href="mailto:eric.zamora@encofradosvera.cl">eric.zamora@encofradosvera.cl</a>
+              <a href="tel:+56959852568">+56 9 5985 2568</a>
+            </div>
+          </div>
         </div>
-        <div class="ename">Eric Zamora</div>
-        <div class="erol">Gerente General</div>
-        <div class="edat">
-          <a href="mailto:eric.zamora@encofradosvera.cl">eric.zamora@encofradosvera.cl</a>
-          <a href="tel:+56959852568">+56 9 5985 2568</a>
+        <p class="ec-bio">Más de dos décadas en la industria del encofrado y el andamiaje. Durante su trayectoria en <strong>PERI</strong> —líder mundial en sistemas de encofrado— lideró equipos comerciales y de proyectos, desde la jefatura de ventas hasta la gerencia de zona y de calidad de servicios. Hoy pone esa experiencia técnica y comercial al servicio de las obras de Encofrados Vera.</p>
+        <div class="ec-track">
+          <div class="ec-track-h">Trayectoria</div>
+          <ul>
+            <li><span class="ec-role">KAM &amp; Project Manager · Building Specialist</span><span class="ec-org">PERI Chile · 2024–2026</span></li>
+            <li><span class="ec-role">KAM &amp; Project Manager UNO</span><span class="ec-org">PERI Chile · 2017–2024</span></li>
+            <li><span class="ec-role">Gerente de Calidad, Servicios y Desarrollo</span><span class="ec-org">PERI Chile · 2015–2017</span></li>
+            <li><span class="ec-role">Gerente de Zona</span><span class="ec-org">PERI Chile · 2005–2015</span></li>
+            <li><span class="ec-role">Sales Lead</span><span class="ec-org">PERI Chile · 1998–2005</span></li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     COBERTURA
-════════════════════════════════════════════ -->
+<!-- ═══════════ COBERTURA ═══════════ -->
 <section id="cobertura">
   <div class="wrap">
     <div class="cl">
       <div class="ct" data-r>
-        <span class="tag">Cobertura nacional</span>
-        <h2>Despachamos <span class="hl">en todo Chile</span></h2>
+        <div class="plate">08 — Cobertura nacional</div>
+        <h2>Despachamos <span class="accent">en todo Chile</span></h2>
         <p>Con oficinas y bodegas en las zonas de mayor actividad constructiva e industrial, coordinamos el despacho de moldaje con tiempos de respuesta competitivos sin importar dónde esté tu obra.</p>
         <p>Retiro en bodega sin costo y despacho valorizado según distancia y tonelaje.</p>
-        <a href="#contacto" class="bp" style="margin-top:8px;display:inline-flex">Consultar disponibilidad</a>
+        <a href="#contacto" class="btn btn-primary" style="margin-top:10px">Consultar disponibilidad</a>
       </div>
       <div class="cz t1" data-r>
-        <div class="zi"><div class="zd"></div><div><div class="zn">Santiago – Región Metropolitana</div><div class="zdt">Oficina Principal · Av. Ossa 235, Of. 1265, La Reina</div></div></div>
-        <div class="zi"><div class="zd"></div><div><div class="zn">Lonquén – Calera de Tango</div><div class="zdt">Bodega y patio de acopio · Ruta G-30 2780</div></div></div>
-        <div class="zi"><div class="zd"></div><div><div class="zn">Concepción – Biobío</div><div class="zdt">Oficina Regional · Av. Camino del Árbol 405, San Pedro de la Paz</div></div></div>
-        <div class="zi"><div class="zd"></div><div><div class="zn">Antofagasta – Norte Grande</div><div class="zdt">Bodega y Oficina · Flourita 588, Antofagasta</div></div></div>
+        <div class="zi"><div class="zd"></div><div><div class="zn">Santiago — Región Metropolitana</div><div class="zdt">Oficina Principal · Av. Ossa 235, Of. 1265, La Reina</div></div></div>
+        <div class="zi"><div class="zd"></div><div><div class="zn">Concepción — Biobío</div><div class="zdt">Oficina Regional · Av. Camino del Árbol 405, San Pedro de la Paz</div></div></div>
+        <div class="zi"><div class="zd"></div><div><div class="zn">Coronel — Biobío</div><div class="zdt">Patio de acopio · San Pedro de la Paz, Coronel</div></div></div>
+        <div class="zi"><div class="zd"></div><div><div class="zn">Antofagasta — Norte Grande</div><div class="zdt">Bodega y Oficina · Flourita 588, Antofagasta</div></div></div>
         <div class="zi zi-dim"><div class="zd zd-dim"></div><div><div class="zn zn-dim">Otras regiones</div><div class="zdt">Consulta disponibilidad y logística a tu faena</div></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     CTA BANNER
-════════════════════════════════════════════ -->
+<!-- ═══════════ CTA ═══════════ -->
 <section id="cta">
-  <div class="wrap">
-    <div class="ci">
-      <span class="tag" data-r>Hablemos hoy</span>
-      <h2 data-r class="t1">¿Listo para hormigonar tu <span class="hl">próxima etapa</span>?</h2>
-      <p data-r class="t2">Envíanos tus planos y te devolvemos el despiece con la cotización. Sin compromiso.</p>
-      <div class="ca" data-r>
-        <a href="#contacto" class="bp">
-          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-          </svg>
-          Solicitar cotización gratis
-        </a>
-        <a href="tel:+56974764806" class="bg">📞 Llamar ahora</a>
-      </div>
+  <div class="ci">
+    <span class="eyebrow on-dark" data-r>Hablemos hoy</span>
+    <h2 data-r class="t1">¿Listo para hormigonar tu <span class="accent">próxima etapa</span>?</h2>
+    <p data-r class="t2">Envíanos tus planos y te devolvemos el despiece con la cotización. Sin compromiso.</p>
+    <div class="ca" data-r>
+      <a href="#contacto" class="btn btn-primary">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        Solicitar cotización
+      </a>
+      <a href="tel:+56974764806" class="btn btn-outline-d">Llamar ahora · +56 9 7476 4806</a>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     CONTACTO
-════════════════════════════════════════════ -->
+<!-- ═══════════ CONTACTO ═══════════ -->
 <section id="contacto">
   <div class="wrap">
     <div class="col">
 
       <div class="coi" data-r>
-        <span class="tag">Contacto</span>
-        <h2>Hablemos sobre tu <span class="hl">obra</span></h2>
+        <div class="plate">09 — Contacto</div>
+        <h2>Hablemos sobre tu <span class="accent">obra</span></h2>
         <p>Nuestro equipo comercial está disponible para dimensionar tu requerimiento y elaborar una propuesta a medida.</p>
 
-        <div class="cocard">
-          <div class="cocard-rol">Gerente Comercial</div>
-          <div class="cocard-nom">Cristián Vera</div>
-          <a class="cocard-lnk" href="mailto:cristian.vera@encofradosvera.cl">cristian.vera@encofradosvera.cl</a>
-          <a class="cocard-lnk" href="tel:+56974764806">+56 9 7476 4806</a>
+        <div class="cocards">
+          <div class="cocard">
+            <div class="cocard-rol">Gerente General</div>
+            <div class="cocard-nom">Eric Zamora</div>
+            <a class="cocard-lnk" href="mailto:eric.zamora@encofradosvera.cl">eric.zamora@encofradosvera.cl</a>
+            <a class="cocard-lnk" href="tel:+56959852568">+56 9 5985 2568</a>
+          </div>
+          <div class="cocard">
+            <div class="cocard-rol">Gerente Comercial</div>
+            <div class="cocard-nom">Cristián Vera</div>
+            <a class="cocard-lnk" href="mailto:cristian.vera@encofradosvera.cl">cristian.vera@encofradosvera.cl</a>
+            <a class="cocard-lnk" href="tel:+56974764806">+56 9 7476 4806</a>
+          </div>
         </div>
 
-        <div class="coitem"><div class="coico">📞</div><div class="cotx"><span>Teléfono</span><strong>+56 9 7476 4806</strong></div></div>
-        <div class="coitem"><div class="coico">✉️</div><div class="cotx"><span>Email</span><strong>cristian.vera@encofradosvera.cl</strong></div></div>
-        <div class="coitem"><div class="coico">📍</div><div class="cotx"><span>Oficina Principal</span><strong>Av. Ossa 235, Of. 1265, La Reina, Santiago</strong></div></div>
-        <div class="coitem"><div class="coico">🕐</div><div class="cotx"><span>Horario</span><strong>Lunes a Viernes · 08:30 – 18:00 hrs</strong></div></div>
+        <div class="coitem"><div class="coico"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="cotx"><span>Oficina Principal</span><strong>Av. Ossa 235, Of. 1265, La Reina, Santiago</strong></div></div>
+        <div class="coitem"><div class="coico"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2"/></svg></div><div class="cotx"><span>Horario</span><strong>Lunes a Viernes · 08:30 – 18:00 hrs</strong></div></div>
       </div>
 
       <div class="cof t1" data-r>
         <h3>Solicita tu cotización</h3>
+        <div class="cof-sub">Respuesta en menos de 24 h hábiles</div>
+        <p class="form-legend"><span class="req">*</span> Campos obligatorios</p>
+        <div class="form-error" id="form-error" role="alert"></div>
+
         <div class="fr">
-          <div class="fg2"><label for="f-nombre">Nombre *</label><input id="f-nombre" type="text" placeholder="Tu nombre"/></div>
-          <div class="fg2"><label for="f-empresa">Empresa</label><input id="f-empresa" type="text" placeholder="Razón social"/></div>
+          <div class="fg2"><label for="f-nombre">Nombre <span class="req">*</span></label><input id="f-nombre" type="text" placeholder="Tu nombre" autocomplete="name" aria-required="true"/><small class="ferr" id="err-nombre"></small></div>
+          <div class="fg2"><label for="f-rut">RUT <span class="req">*</span></label><input id="f-rut" type="text" placeholder="12.345.678-9" inputmode="text" aria-required="true"/><small class="ferr" id="err-rut"></small></div>
         </div>
         <div class="fr">
-          <div class="fg2"><label for="f-email">Email *</label><input id="f-email" type="email" placeholder="correo@empresa.cl"/></div>
-          <div class="fg2"><label for="f-tel">Teléfono</label><input id="f-tel" type="tel" placeholder="+56 9 XXXX XXXX"/></div>
+          <div class="fg2"><label for="f-email">Email <span class="req">*</span></label><input id="f-email" type="email" placeholder="correo@empresa.cl" autocomplete="email" aria-required="true"/><small class="ferr" id="err-email"></small></div>
+          <div class="fg2"><label for="f-tel">Teléfono <span class="req">*</span></label><input id="f-tel" type="tel" placeholder="+56 9 1234 5678" autocomplete="tel" inputmode="tel" aria-required="true"/><small class="ferr" id="err-tel"></small></div>
         </div>
+        <div class="fg2"><label for="f-empresa">Empresa <span class="opt">(opcional)</span></label><input id="f-empresa" type="text" placeholder="Razón social" autocomplete="organization"/></div>
         <div class="fg2">
-          <label for="f-equipo">Sistema requerido *</label>
-          <select id="f-equipo">
+          <label for="f-equipo">Sistema requerido <span class="req">*</span></label>
+          <select id="f-equipo" aria-required="true">
             <option value="">Selecciona un sistema...</option>
             <% sistemas.forEach(function(s){ %>
             <option><%= s %></option>
             <% }); %>
           </select>
+          <small class="ferr" id="err-equipo"></small>
         </div>
         <div class="fr">
-          <div class="fg2"><label for="f-obra">Obra / Ubicación</label><input id="f-obra" type="text" placeholder="Nombre de la obra y comuna"/></div>
-          <div class="fg2"><label for="f-m2">m² aprox. de moldaje</label><input id="f-m2" type="text" placeholder="Ej: 800 m²"/></div>
+          <div class="fg2"><label for="f-obra">Obra / Ubicación <span class="opt">(opcional)</span></label><input id="f-obra" type="text" placeholder="Nombre de la obra y comuna"/></div>
+          <div class="fg2"><label for="f-m2">m² aprox. de moldaje <span class="opt">(opcional)</span></label><input id="f-m2" type="text" placeholder="Ej: 800 m²"/></div>
         </div>
-        <div class="fg2"><label for="f-msg">Mensaje</label><textarea id="f-msg" placeholder="Describe tu obra: tipo de elemento, altura de vaciado, plazo estimado, si necesitas asesoría de despiece..."></textarea></div>
+        <div class="fg2"><label for="f-msg">Mensaje <span class="opt">(opcional)</span></label><textarea id="f-msg" placeholder="Describe tu obra: tipo de elemento, altura de vaciado, plazo estimado, si necesitas asesoría de despiece..."></textarea></div>
+
+        <!-- Consentimiento tratamiento de datos (Ley 21.719) -->
+        <div class="fconsent">
+          <label class="fcheck">
+            <input type="checkbox" id="f-consent"/>
+            <span>He leído y acepto la <a href="/privacidad" target="_blank" rel="noopener">Política de Privacidad</a> y autorizo el tratamiento de mis datos personales para responder a esta solicitud de cotización. <span class="req">*</span></span>
+          </label>
+          <small class="ferr" id="err-consent"></small>
+        </div>
 
         <!-- CAPTCHA Turnstile -->
         <% if (turnstileSiteKey) { %>
         <div class="fg2">
-          <div class="cf-turnstile"
-              data-sitekey="<%= turnstileSiteKey %>"
-              data-theme="dark"
-              data-size="normal">
-          </div>
+          <div class="cf-turnstile" data-sitekey="<%= turnstileSiteKey %>" data-theme="light" data-size="normal"></div>
         </div>
         <% } %>
 
-        <button class="fsub" id="submitBtn">
-          Enviar solicitud de cotización →
-        </button>
+        <button class="fsub" id="submitBtn">Enviar solicitud de cotización →</button>
         <p class="fnote">Respuesta en menos de 24 horas hábiles · Sin compromiso</p>
       </div>
 
@@ -797,92 +654,109 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════════ -->
+<!-- ═══════════ FOOTER ═══════════ -->
 <footer>
-  <div class="wrap">
-    <div class="ft">
-      <div class="fbr">
-        <a href="#" class="logo">
-          <img src="/images/logo-vera-blanco.png" alt="Encofrados Vera" class="logo-img" width="200" height="73"/>
-        </a>
-        <p>Arriendo y venta de moldajes y encofrados en Chile. Equipo revisado, asesoría técnica de despiece y flota propia de transporte.</p>
-      </div>
-      <div class="fcol">
-        <h4>Productos</h4>
-        <ul>
-          <li><a href="#productos">Moldaje de Muro</a></li>
-          <li><a href="#productos">Moldaje de Losa</a></li>
-          <li><a href="#productos">Columnas y Pilares</a></li>
-          <li><a href="#productos">Puntales y Torres</a></li>
-          <li><a href="#productos">Andamios</a></li>
-          <li><a href="#productos">Vigas H20 y Tableros</a></li>
-        </ul>
-      </div>
-      <div class="fcol">
-        <h4>Empresa</h4>
-        <ul>
-          <li><a href="#sistemas">Sistemas compatibles</a></li>
-          <li><a href="#ventajas">Por qué elegirnos</a></li>
-          <li><a href="#industrias">Industrias</a></li>
-          <li><a href="#proceso">Proceso</a></li>
-          <li><a href="#equipo">Nuestro equipo</a></li>
-          <li><a href="#cobertura">Cobertura</a></li>
-        </ul>
-      </div>
-      <div class="fcol">
-        <h4>Contacto</h4>
-        <ul>
-          <li><a href="#contacto">Solicitar cotización</a></li>
-          <li><a href="tel:+56974764806">+56 9 7476 4806</a></li>
-          <li><a href="mailto:cristian.vera@encofradosvera.cl">cristian.vera@encofradosvera.cl</a></li>
-          <li><a href="mailto:eric.zamora@encofradosvera.cl">eric.zamora@encofradosvera.cl</a></li>
-          <li><a href="#cobertura">Nuestras oficinas</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="fb">
-      <p>© <%= year %> ENCOFRADOS VERA · Todos los derechos reservados</p>
-      <div class="soc">
-        <a href="#" class="sl" title="LinkedIn">💼</a>
-        <a href="#" class="sl" title="Instagram">📸</a>
-        <a href="https://wa.me/56974764806" target="_blank" rel="noopener" class="sl" title="WhatsApp">💬</a>
+  <div class="ft">
+    <div class="fbr">
+      <a href="#" class="logo"><img src="/images/logo-vera-blanco.png" alt="Encofrados Vera" class="logo-img" width="200" height="73"/></a>
+      <p>Arriendo y venta de moldajes y encofrados en Chile. Equipo revisado, asesoría técnica de despiece y flota propia de transporte.</p>
+      <div class="fsoc">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.34 9.5H5.67V18h2.67V9.5zM7 6.13a1.55 1.55 0 100 3.1 1.55 1.55 0 000-3.1zM18.34 18v-4.67c0-2.48-1.33-3.63-3.1-3.63a2.67 2.67 0 00-2.42 1.33V9.5h-2.67V18h2.67v-4.5c0-1.19.22-2.34 1.7-2.34 1.45 0 1.47 1.36 1.47 2.42V18h2.68z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.16 15.58 2.16 15.2 2.16 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.16 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38A5.86 5.86 0 00.63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.86 5.86 0 002.12-1.38 5.86 5.86 0 001.38-2.12c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 00-1.38-2.12A5.86 5.86 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1018.16 12 6.16 6.16 0 0012 5.84zM12 16a4 4 0 114-4 4 4 0 01-4 4zm6.41-10.85a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg></a>
+        <a href="https://wa.me/56974764806" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.14-.17.19-.3.29-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.7.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.07-.12-.27-.2-.57-.35z"/></svg></a>
       </div>
     </div>
 
-    <div style="text-align:center;padding:20px 0 0;border-top:1px solid rgba(255,255,255,0.08);margin-top:20px">
-      <a href="https://tsugi.cl" target="_blank" rel="noopener"
-         style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;
-                background:linear-gradient(135deg,#C9A84C,#A8853A);
-                padding:10px 24px;border-radius:4px;
-                font-size:12px;font-weight:700;letter-spacing:0.08em;
-                color:#0A0A0A;font-family:Arial,sans-serif;
-                box-shadow:0 4px 16px rgba(201,168,76,0.4)">
-        <span style="font-size:18px">継</span>
-        DESARROLLADO POR TSUGI
-      </a>
+    <div class="fcol">
+      <h4>Catálogo</h4>
+      <ul>
+        <li><a href="#productos">Moldaje de Muro</a></li>
+        <li><a href="#productos">Moldaje de Losa</a></li>
+        <li><a href="#productos">Columnas y Pilares</a></li>
+        <li><a href="#productos">Puntales y Torres</a></li>
+        <li><a href="#productos">Andamios</a></li>
+        <li><a href="#productos">Vigas H20 y Tableros</a></li>
+      </ul>
     </div>
+
+    <div class="fcol">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#sistemas">Compatibilidad</a></li>
+        <li><a href="#ventajas">Por qué elegirnos</a></li>
+        <li><a href="#industrias">Industrias</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#equipo">Nuestro equipo</a></li>
+        <li><a href="#cobertura">Cobertura</a></li>
+      </ul>
+    </div>
+
+    <div class="fcol">
+      <h4>Nuestras direcciones</h4>
+      <div class="fmap-btns">
+        <button class="active" onclick="setFootMap(this,'Av. Ossa 235, Oficina 1265, La Reina, Santiago')">La Reina</button>
+        <button onclick="setFootMap(this,'Av. Camino del Árbol 405, San Pedro de la Paz, Concepción')">Concepción</button>
+        <button onclick="setFootMap(this,'Flourita 588, Antofagasta')">Antofagasta</button>
+        <button onclick="setFootMap(this,'San Pedro de la Paz, Coronel, Biobío')">Coronel</button>
+      </div>
+      <iframe id="footmap" class="fmap" title="Ubicación Encofrados Vera" loading="lazy"
+        src="https://maps.google.com/maps?q=Av.%20Ossa%20235%20Oficina%201265%20La%20Reina%20Santiago&z=15&output=embed"></iframe>
+      <div class="faddr">
+        <p onclick="setFootMap(null,'Av. Ossa 235, Oficina 1265, La Reina, Santiago')"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="2.5"/></svg> Av. Ossa 235, Of. 1265, La Reina, Santiago</p>
+        <p onclick="setFootMap(null,'Av. Camino del Árbol 405, San Pedro de la Paz, Concepción')"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="2.5"/></svg> Av. Camino del Árbol 405, San Pedro de la Paz</p>
+        <p onclick="setFootMap(null,'Flourita 588, Antofagasta')"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="2.5"/></svg> Flourita 588, Antofagasta</p>
+        <p onclick="setFootMap(null,'San Pedro de la Paz, Coronel, Biobío')"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="2.5"/></svg> San Pedro de la Paz, Coronel, Biobío</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="fbar">
+    <p>© <%= year %> ENCOFRADOS VERA · Todos los derechos reservados</p>
+    <div class="fbar-links">
+      <a href="/privacidad">Política de Privacidad</a>
+      <button type="button" class="fbar-cookies" onclick="abrirCookies()">Preferencias de cookies</button>
+    </div>
+    <a href="https://tsugi.cl" target="_blank" rel="noopener" class="tsugi"><span>継</span> DESARROLLADO POR TSUGI</a>
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════════════
-     MODAL ÉXITO
-════════════════════════════════════════════ -->
+<!-- Banner de consentimiento de cookies (Ley 21.719) -->
+<div class="ckbanner" id="ckbanner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+  <div class="ckbanner-in">
+    <div class="cktx">
+      <strong>Usamos cookies</strong>
+      <p>Utilizamos cookies analíticas (Google Analytics) para entender cómo se usa el sitio y mejorarlo. Puedes aceptarlas o rechazarlas. Más información en nuestra <a href="/privacidad" target="_blank" rel="noopener">Política de Privacidad</a>.</p>
+    </div>
+    <div class="ckbtns">
+      <button type="button" class="ckbtn ckbtn-ghost" onclick="rechazarCookies()">Rechazar</button>
+      <button type="button" class="ckbtn ckbtn-solid" onclick="aceptarCookies()">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Script del mapa del footer -->
+<script>
+  function setFootMap(btn, address){
+    var f = document.getElementById('footmap');
+    if (f) f.src = 'https://maps.google.com/maps?q=' + encodeURIComponent(address) + '&z=15&output=embed';
+    document.querySelectorAll('.fmap-btns button').forEach(function(b){ b.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+  }
+</script>
+
+<!-- Modal éxito -->
 <div class="mo" id="mo">
   <div class="md">
-    <div class="mi">✅</div>
+    <div class="mi"><svg fill="none" viewBox="0 0 24 24" stroke-width="2.4"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12l5 5L20 6"/></svg></div>
     <h3>¡Cotización enviada!</h3>
     <p>Hemos recibido tu solicitud. Te contactaremos en menos de 24 horas hábiles.</p>
-    <button class="bp" id="closeModalBtn" style="width:100%;justify-content:center;margin-top:8px">Entendido</button>
+    <button class="btn btn-primary" id="closeModalBtn" style="width:100%;justify-content:center">Entendido</button>
   </div>
 </div>
 
 <!-- WhatsApp flotante -->
 <a href="https://wa.me/56974764806" target="_blank" rel="noopener" class="wa-btn" aria-label="Contactar por WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script src="/js/landing.js"></script>

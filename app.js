@@ -75,7 +75,7 @@ app.use(helmet({
       fontSrc:       ["'self'", "https://fonts.gstatic.com"],
       scriptSrc:     ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://challenges.cloudflare.com", "https://www.googletagmanager.com"],
       scriptSrcAttr: ["'unsafe-inline'"],
-      frameSrc:      ["https://challenges.cloudflare.com"],
+      frameSrc:      ["'self'", "https://challenges.cloudflare.com", "https://www.google.com", "https://maps.google.com"],
       imgSrc:        ["'self'", "data:", "https:"],
       connectSrc:    ["'self'", "https://challenges.cloudflare.com", "https://*.cloudflare.com", "https://www.google-analytics.com"],
     }
@@ -93,6 +93,8 @@ const quoteLimiter = rateLimit({
 
 // ── HELPER: verificar Turnstile ───────────────────────────
 // Turnstile solo se aplica si hay secret configurado.
+// const TURNSTILE_ACTIVO = Boolean(process.env.TURNSTILE_SECRET);
+// const TURNSTILE_ACTIVO = Boolean(process.env.TURNSTILE_SECRET);
 const TURNSTILE_ACTIVO = Boolean(process.env.TURNSTILE_SECRET);
 if (!TURNSTILE_ACTIVO) console.warn('⚠️  TURNSTILE_SECRET no definida: el formulario queda sin CAPTCHA (protegido solo por rate limit).');
 
@@ -144,14 +146,13 @@ app.get('/', (req, res) => {
     description:      'Arriendo y venta de moldajes y encofrados para muros, losas, columnas y obra civil. Compatibles con los principales sistemas del mercado chileno. Asesoría en terreno y cobertura nacional.',
     year:             new Date().getFullYear(),
     sistemas:         SISTEMAS_VALIDOS,
-    turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || '',
-    gaId:             process.env.GA_MEASUREMENT_ID || '',
+    turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || ''
   });
 });
 
 // ── POST cotización ───────────────────────────────────────
 app.post('/cotizar', quoteLimiter, async (req, res) => {
-  const { nombre, empresa, email, telefono, equipo, obra, m2, mensaje } = req.body;
+  const { nombre, rut, empresa, email, telefono, equipo, obra, m2, mensaje, consentimiento } = req.body;
   const turnstileToken = req.body['cf-turnstile-response'];
 
   // Verificar CAPTCHA solo en producción Y si Turnstile está configurado.
@@ -167,6 +168,10 @@ app.post('/cotizar', quoteLimiter, async (req, res) => {
   // Validar campos
   if (!nombre || !email || !equipo) {
     return res.status(400).json({ ok: false, message: 'Faltan campos requeridos.' });
+  }
+  // Consentimiento obligatorio (Ley 21.719)
+  if (consentimiento !== true) {
+    return res.status(400).json({ ok: false, message: 'Debes aceptar la Política de Privacidad para enviar tu solicitud.' });
   }
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
@@ -207,12 +212,14 @@ app.post('/cotizar', quoteLimiter, async (req, res) => {
         <div style="padding:32px">
           <table style="width:100%;border-collapse:collapse;font-size:14px">
             ${fila('Nombre', esc(nombre))}
+            ${fila('RUT', esc(rut) || '—')}
             ${fila('Empresa', esc(empresa) || '—')}
             ${fila('Email', `<a href="mailto:${esc(email)}" style="color:#ee0117">${esc(email)}</a>`)}
             ${fila('Teléfono', esc(telefono) || '—')}
             ${fila('Sistema requerido', esc(equipo), true)}
             ${fila('Obra / Ubicación', esc(obra) || '—')}
             ${fila('m² aprox. de moldaje', esc(m2) || '—')}
+            ${fila('Consentimiento', 'Aceptado · ' + fechaHora)}
             ${fila('Mensaje', esc(mensaje) || '—')}
           </table>
         </div>
@@ -240,6 +247,11 @@ app.post('/cotizar', quoteLimiter, async (req, res) => {
     });
   }
 });
+
+app.get('/privacidad', (req, res) => {
+  res.render('privacidad', { year: new Date().getFullYear() });
+});
+
 
 // 404
 app.use((req, res) => res.redirect('/'));
