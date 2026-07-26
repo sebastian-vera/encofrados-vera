@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+  <!-- ── SEO BÁSICO ── -->
+  <title><%= title %></title>
+  <meta name="description" content="<%= description %>"/>
+  <meta name="keywords" content="arriendo encofrados Chile, arriendo moldajes, venta moldajes, moldaje de muro, moldaje de losa, encofrado columnas, puntales, andamios, vigas H20, tableros fenólicos, Encofrados Vera"/>
+  <meta name="author" content="Encofrados Vera"/>
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+  <link rel="canonical" href="https://encofradosvera.cl/"/>
+
+  <!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp) ── -->
+  <meta property="og:type"        content="website"/>
+  <meta property="og:url"         content="https://encofradosvera.cl/"/>
+  <meta property="og:title"       content="<%= title %>"/>
+  <meta property="og:description" content="<%= description %>"/>
+  <meta property="og:image"       content="https://encofradosvera.cl/images/og-image.jpg"/>
+  <meta property="og:image:width"  content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:locale"      content="es_CL"/>
+  <meta property="og:site_name"   content="Encofrados Vera"/>
+
+  <!-- ── TWITTER CARD ── -->
+  <meta name="twitter:card"        content="summary_large_image"/>
+  <meta name="twitter:title"       content="<%= title %>"/>
+  <meta name="twitter:description" content="<%= description %>"/>
+  <meta name="twitter:image"       content="https://encofradosvera.cl/images/og-image.jpg"/>
+
+  <!-- ── SCHEMA.ORG — LocalBusiness ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Encofrados Vera",
+    "description": "Arriendo y venta de moldajes y encofrados para muros, losas, columnas, fundaciones y obra civil en Chile. Asesoría técnica en terreno y cobertura nacional.",
+    "url": "https://encofradosvera.cl",
+    "logo": "https://encofradosvera.cl/images/logo-vera.png",
+    "image": "https://encofradosvera.cl/images/og-image.jpg",
+    "telephone": "+56974764806",
+    "email": "cristian.vera@encofradosvera.cl",
+    "areaServed": "CL",
+    "currenciesAccepted": "CLP",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Ossa 235, Of. 1265",
+      "addressLocality": "La Reina",
+      "addressRegion": "Región Metropolitana",
+      "addressCountry": "CL"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -33.4489,
+      "longitude": -70.6693
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "08:30",
+      "closes": "18:00"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Arriendo y Venta de Moldajes y Encofrados",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Arriendo de moldaje de muro modular" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Arriendo de moldaje de losa con vigas H20 y puntales" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Arriendo de moldaje de columnas y pilares" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Arriendo de sistemas trepantes" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Arriendo de andamio multidireccional y de fachada" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Asesoría técnica y plano de despiece de moldaje" }}
+      ]
+    }
+  }
+  </script>
+
+  <!-- ── FAVICONS ── -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png"/>
+  <link rel="apple-touch-icon"                    href="/images/favicon.png"/>
+  <meta name="theme-color" content="#ee0117"/>
+
+  <!-- ── PERFORMANCE ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/></noscript>
+  <link rel="stylesheet" href="/css/landing.css"/>
+
+  <!-- ── CLOUDFLARE TURNSTILE ── -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <!-- ── GOOGLE ANALYTICS 4 ── -->
+  <% if (gaId) { %>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= gaId %>"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '<%= gaId %>');
+  </script>
+  <% } %>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAV
+════════════════════════════════════════════ -->
+<nav id="nav">
+  <div class="ni">
+    <a href="#" class="logo">
+      <img src="/images/logo-vera-blanco.png" alt="Encofrados Vera" class="logo-img" fetchpriority="high" width="200" height="73"/>
+    </a>
+    <ul class="nl" id="nl">
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#sistemas">Sistemas</a></li>
+      <li><a href="#ventajas">Ventajas</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#cobertura">Cobertura</a></li>
+      <li><a href="#contacto" class="nc">Cotizar ahora</a></li>
+    </ul>
+    <button class="hb" onclick="tmenu()" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hbg"></div>
+  <div class="hgrid"></div>
+  <div class="wrap">
+    <div class="hc">
+
+      <div class="hl-l">
+        <span class="tag ai">Arriendo y venta de moldajes · Chile</span>
+        <h1 class="ai d1">
+          El molde correcto<br/>
+          <span class="ga">para cada</span><br/>
+          hormigón
+        </h1>
+        <p class="ai d2">
+          Encofrados Vera provee moldajes y encofrados para muros, losas, columnas,
+          fundaciones y obra civil — compatibles con los principales sistemas del
+          mercado chileno, con asesoría técnica en terreno y despacho a todo el país.
+        </p>
+        <div class="ha ai d3">
+          <a href="#contacto" class="bp">
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            Solicitar cotización
+          </a>
+          <a href="#productos" class="bg">Ver catálogo completo ↓</a>
+        </div>
+        <div class="hs ai d3">
+          <div><div class="hs-n">16</div><div class="hs-l">Sistemas disponibles</div></div>
+          <div><div class="hs-n">+19</div><div class="hs-l">Años en el rubro</div></div>
+          <div><div class="hs-n">4</div><div class="hs-l">Bases operativas</div></div>
+        </div>
+      </div>
+
+      <div class="hr ai d2">
+        <div class="hv">
+          <div class="hcard">
+            <div class="hcb">Disponible</div>
+            <div class="hci">🧱</div>
+            <div class="hct">Moldaje de Muro</div>
+            <div class="hcs">Modular de acero y liviano manoportable</div>
+            <div class="hcl">
+              <span class="hcc">Paneles hasta 2,70 m</span>
+              <span class="hcc">Presión 60–80 kN/m²</span>
+              <span class="hcc">Esquinas y compensaciones</span>
+            </div>
+          </div>
+          <div class="hcard">
+            <div class="hcb">Disponible</div>
+            <div class="hci">🏗️</div>
+            <div class="hct">Moldaje de Losa</div>
+            <div class="hcs">Vigas H20, cabezales y puntales regulables</div>
+          </div>
+          <div class="hcard">
+            <div class="hcb">Disponible</div>
+            <div class="hci">⚙️</div>
+            <div class="hct">Andamios y Accesorios</div>
+            <div class="hcs">Multidireccional, fachada y consolas</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PRODUCTOS
+════════════════════════════════════════════ -->
+<section id="productos">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag" data-r>Nuestro catálogo</span>
+      <h2 data-r class="t1">Encofrados para cada <span class="hl">elemento de hormigón</span></h2>
+      <p data-r class="t2">Equipos revisados, con piezas completas y respaldo técnico. Arriendo, venta y asesoría de despiece incluidos.</p>
+    </div>
+    <div class="fg">
+
+      <!-- Moldaje de muro modular -->
+      <div class="fc" data-r>
+        <div class="fct">
+          <div class="fi">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
+              <rect x="3" y="4" width="18" height="16" rx="1"/>
+              <path stroke-linecap="round" d="M3 9.5h18M3 15h18M9 4v5.5M15 9.5V15M9 15v5"/>
+            </svg>
+          </div>
+          <div class="fn">01</div>
+        </div>
+        <div class="ftitle">Moldaje de Muro Modular</div>
+        <div class="fd">Paneles de marco de acero con placa fenólica, para muros de hormigón armado en altura. Alta presión admisible y mínimo número de anclajes por m².</div>
+        <div class="fs">
+          <span class="fsp">Paneles 0,30 a 2,70 m</span>
+          <span class="fsp">60–80 kN/m²</span>
+          <span class="fsp">Esquinas interior/exterior</span>
+          <span class="fsp">Compensaciones</span>
+        </div>
+      </div>
+
+      <!-- Moldaje de muro liviano -->
+      <div class="fc t1" data-r>
+        <div class="fct">
+          <div class="fi">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
+              <rect x="4" y="3" width="7" height="18" rx="1"/>
+              <rect x="13" y="3" width="7" height="18" rx="1"/>
+              <path stroke-linecap="round" d="M7.5 11h0M16.5 11h0"/>
+            </svg>
+          </div>
+          <div class="fn">02</div>
+        </div>
+        <div class="ftitle">Moldaje Liviano / Manoportable</div>
+        <div class="fd">Sistemas de aluminio y acero liviano para obras sin grúa: viviendas, muros de contención bajos, cámaras y trabajos de terminación.</div>
+        <div class="fs">
+          <span class="fsp">Sin grúa</span>
+          <span class="fsp">Desde 20 kg/panel</span>
+          <span class="fsp">Montaje rápido</span>
+        </div>
+      </div>
+
+      <!-- Moldaje de losa -->
+      <div class="fc t2" data-r>
+        <div class="fct">
+          <div class="fi">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
+              <path stroke-linecap="round" d="M2 7h20M2 10h20"/>
+              <path stroke-linecap="round" d="M6 10v11M12 10v11M18 10v11M4 21h4M10 21h4M16 21h4"/>
+            </svg>
+          </div>
+          <div class="fn">03</div>
+        </div>
+        <div class="ftitle">Moldaje de Losa</div>
+        <div class="fd">Sistema de vigas de madera H20, cabezales de descimbre y puntales regulables. Permite liberar el moldaje manteniendo el apuntalamiento de seguridad.</div>
+        <div class="fs">
+          <span class="fsp">Vigas H20 · 1,90 a 5,90 m</span>
+          <span class="fsp">Cabezal de descimbre</span>
+          <span class="fsp">Tableros 18 y 21 mm</span>
+        </div>
+      </div>
+
+      <!-- Mesas de encofrado -->
+      <div class="fc" data-r>
+        <div class="fct">
+          <div class="fi">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
+              <path stroke-linecap="round" d="M2 8h20v2H2z"/>
+              <path stroke-linecap="round" d="M5 10v9M19 10v9M5 19h3M16 19h3M8 14h8"/>
+            </svg>
+          </div>
+          <div class="fn">04</div>
+        </div>
+        <div class="ftitle">Mesas de Encofrado</div>
+        <div class="fd">Mesas prearmadas y mesas voladoras para losas de gran superficie. Ciclos de hormigonado más rápidos y menos horas hombre por m².</div>
+        <div class="fs">
+          <span class="fsp">Prearmadas en obra</span>
+          <span class="fsp">Traslado con grúa</span>
+          <span class="fsp">Alto rendimiento</span>
+        </div>
+      </div>
+
+      <!-- Columnas -->
+      <div class="fc t1" data-r>
+        <div class="fct">
+          <div class="fi">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
+              <rect x="8" y="3" width="8" height="18" rx="1"/>
+              <path stroke-linecap="round" d="M5 7h14M5 12h14M5 17h14"/>
+            </svg>
+          </div>
+          <div class="fn">05</div>
+        </div>
+        <div class="ftitle">Moldaje de Columnas y Pilares</div>
+        <div class="fd">Moldajes de sección cuadrada, rectangular y circular, con regulación por escalones y acabado visto. Incluye plataforma de hormigonado y accesos.</div>
+        <div class="fs">
+          <span class="fsp">Cuadrada / rectangular</span>
+          <span class="fsp">Circular Ø 25 a 120 cm</span>
+          <span class="fsp">Hormigón visto</span>
+        </div>
+      </div>
+
+      <!-- Fundaciones -->
+      <div class="fc t2" data-r>
+        <div class="fct">
+          <div class="fi">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
+              <path stroke-linecap="round" d="M2 14h20M4 14V9h16v5"/>
+              <path stroke-linecap="round" d="M2 18h20M7 14v4M17 14v4"/>
+            </svg>
+          </div>
+          <div class="fn">06</div>
+        </div>
+        <div class="ftitle">Fundaciones, Poyos y Radieres</div>
+        <div class="fd">Encofrado de zapatas, dados, vigas de fundación y cámaras. Sistemas de bajo peso, resistentes a terreno húmedo y fáciles de alinear.</div>
+        <div class="fs">
+          <span class="fsp">Zapatas y dados</span>
+          <span class="fsp">Vigas de fundación</span>
+          <span class="fsp">Cámaras y cámaras técnicas</span>
+        </div>
+      </div>
+
+      <!-- Trepante -->
+      <div class="fc" data-r>
+        <div class="fct">
+          <div class="fi">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
+              <path stroke-linecap="round" d="M12 21V3M8 6l4-3 4 3"/>
+              <rect x="4" y="10" width="16" height="4" rx="1"/>
+              <path stroke-linecap="round" d="M4 18h16"/>
+            </svg>
+          </div>
+          <div class="fn">07</div>
+        </div>
+        <div class="ftitle">Sistemas Trepantes</div>
+        <div class="fd">Consolas trepantes y autotrepantes para núcleos, pilas de puente y muros de gran altura. Plataformas de trabajo integradas y protección perimetral.</div>
+        <div class="fs">
+          <span class="fsp">Núcleos de ascensor</span>
+          <span class="fsp">Pilas de puente</span>
+          <span class="fsp">Plataforma integrada</span>
+        </div>
+      </div>
+
+      <!-- Puntales -->
+      <div class="fc t1" data-r>
+        <div class="fct">
+          <div class="fi">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
+              <path stroke-linecap="round" d="M12 3v18M8 3h8M8 21h8"/>
+              <circle cx="12" cy="10" r="2.2"/>
+            </svg>
+          </div>
+          <div class="fn">08</div>
+        </div>
+        <div class="ftitle">Puntales y Torres de Carga</div>
+        <div class="fd">Puntales metálicos regulables (alza primas) y torres de carga para grandes alturas y cargas puntuales elevadas, con husillos y bases regulables.</div>
+        <div class="fs">
+          <span class="fsp">Puntales 1,8 a 5,5 m</span>
+          <span class="fsp">Torres de carga</span>
+          <span class="fsp">Husillos y bases</span>
+        </div>
+      </div>
+
+      <!-- Andamios -->
+      <div class="fc t2" data-r>
+        <div class="fct">
+          <div class="fi">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
+              <path stroke-linecap="round" d="M4 3v18M12 3v18M20 3v18M4 8h16M4 14h16M4 20h16"/>
+            </svg>
+          </div>
+          <div class="fn">09</div>
+        </div>
+        <div class="ftitle">Andamios Multidireccional y Fachada</div>
+        <div class="fd">Andamio modular de roseta y andamio de marco para fachada, con plataformas de acero, rodapiés, barandas y accesos certificados.</div>
+        <div class="fs">
+          <span class="fsp">Multidireccional</span>
+          <span class="fsp">Fachada / marco</span>
+          <span class="fsp">Torres móviles</span>
+        </div>
+      </div>
+
+      <!-- Plataformas y seguridad -->
+      <div class="fc" data-r>
+        <div class="fct">
+          <div class="fi">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
+              <path stroke-linecap="round" d="M3 12h18M3 12v7M21 12v7"/>
+              <path stroke-linecap="round" d="M6 12V6h12v6M6 16h12"/>
+            </svg>
+          </div>
+          <div class="fn">10</div>
+        </div>
+        <div class="ftitle">Plataformas y Consolas de Seguridad</div>
+        <div class="fd">Consolas de hormigonado, plataformas de trabajo en borde de losa y protección perimetral. Cumplimiento del estándar de trabajo en altura.</div>
+        <div class="fs">
+          <span class="fsp">Consolas de hormigonado</span>
+          <span class="fsp">Protección perimetral</span>
+          <span class="fsp">Redes y barandas</span>
+        </div>
+      </div>
+
+      <!-- Vigas y tableros -->
+      <div class="fc t1" data-r>
+        <div class="fct">
+          <div class="fi">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
+              <rect x="2" y="5" width="20" height="4" rx="1"/>
+              <rect x="2" y="14" width="20" height="5" rx="1"/>
+              <path stroke-linecap="round" d="M6 9v5M18 9v5"/>
+            </svg>
+          </div>
+          <div class="fn">11</div>
+        </div>
+        <div class="ftitle">Vigas H20 y Tableros Fenólicos</div>
+        <div class="fd">Vigas de madera laminada H20 y tableros fenólicos / terciado estructural de 18 y 21 mm, para moldajes a medida y reposición de placa.</div>
+        <div class="fs">
+          <span class="fsp">Vigas H20</span>
+          <span class="fsp">Tableros 18 / 21 mm</span>
+          <span class="fsp">Corte a medida</span>
+        </div>
+      </div>
+
+      <!-- Accesorios -->
+      <div class="fc fc-accent t2" data-r>
+        <div class="fct">
+          <div class="fi">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#ee0117" stroke-width="1.6">
+              <circle cx="12" cy="12" r="3"/>
+              <path stroke-linecap="round" d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>
+            </svg>
+          </div>
+          <div class="fn">12</div>
+        </div>
+        <div class="ftitle">Accesorios, Fijaciones y Asesoría</div>
+        <div class="fd">Barras de anclaje, tuercas de placa, conos, alineadores, escuadras, desmoldante y todo el consumible. Además elaboramos el plano de despiece de tu obra.</div>
+        <div class="fs">
+          <span class="fsp">Barras y anclajes</span>
+          <span class="fsp">Alineadores y escuadras</span>
+          <span class="fsp">Desmoldante</span>
+          <span class="fsp">Plano de despiece</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     GALERÍA
+════════════════════════════════════════════ -->
+<section id="galeria">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag" data-r>En terreno</span>
+      <h2 data-r class="t1">Nuestros sistemas <span class="hl">en obra</span></h2>
+      <p data-r class="t2">Soluciones montadas en edificación en altura, obra civil e industria.</p>
+    </div>
+    <div class="gal">
+
+      <div class="gal-card" data-r>
+        <img src="/images/productos/moldaje-muro-modular.jpg" alt="Moldaje de muro modular de acero" loading="lazy" width="1200" height="800"/>
+        <div class="gal-overlay">
+          <span class="gal-tag">Moldaje de Muro</span>
+          <p>Panel modular con anclaje pasante</p>
+        </div>
+      </div>
+
+      <div class="gal-card t1" data-r>
+        <img src="/images/productos/moldaje-losa.jpg" alt="Moldaje de losa con vigas H20 y tablero fenólico" loading="lazy" width="1200" height="800"/>
+        <div class="gal-overlay">
+          <span class="gal-tag">Moldaje de Losa</span>
+          <p>Vigas H20 + tablero fenólico</p>
+        </div>
+      </div>
+
+      <div class="gal-card t2" data-r>
+        <img src="/images/productos/puntales-torres.jpg" alt="Puntales metálicos regulables apuntalando una losa" loading="lazy" width="1200" height="800"/>
+        <div class="gal-overlay">
+          <span class="gal-tag">Puntales</span>
+          <p>Apuntalamiento y descimbre seguro</p>
+        </div>
+      </div>
+
+      <div class="gal-card t1" data-r>
+        <img src="/images/productos/moldaje-columna.jpg" alt="Moldaje circular de columna de hormigón" loading="lazy" width="1200" height="800"/>
+        <div class="gal-overlay">
+          <span class="gal-tag">Columnas</span>
+          <p>Sección circular y rectangular</p>
+        </div>
+      </div>
+
+      <div class="gal-card t2" data-r>
+        <img src="/images/productos/moldaje-fundacion.jpg" alt="Encofrado de fundaciones y muros bajos" loading="lazy" width="1200" height="800"/>
+        <div class="gal-overlay">
+          <span class="gal-tag">Fundaciones</span>
+          <p>Zapatas, dados y vigas de fundación</p>
+        </div>
+      </div>
+
+      <div class="gal-card t3" data-r>
+        <img src="/images/productos/obra-civil.jpg" alt="Encofrado y falso puente en obra civil" loading="lazy" width="1200" height="800"/>
+        <div class="gal-overlay">
+          <span class="gal-tag">Obra Civil</span>
+          <p>Puentes, muros de contención y pilas</p>
+        </div>
+      </div>
+
+      <div class="gal-card t2" data-r>
+        <img src="/images/productos/andamios.jpg" alt="Andamio multidireccional montado en obra" loading="lazy" width="1200" height="800"/>
+        <div class="gal-overlay">
+          <span class="gal-tag">Andamios</span>
+          <p>Multidireccional y de fachada</p>
+        </div>
+      </div>
+
+      <div class="gal-card t3" data-r>
+        <img src="/images/productos/trepante.jpg" alt="Sistema trepante en núcleo de hormigón" loading="lazy" width="1200" height="800"/>
+        <div class="gal-overlay">
+          <span class="gal-tag">Trepantes</span>
+          <p>Núcleos y muros de gran altura</p>
+        </div>
+      </div>
+
+      <div class="gal-card t1" data-r>
+        <img src="/images/productos/escaleras.jpg" alt="Encofrado de escalera de hormigón" loading="lazy" width="1200" height="800"/>
+        <div class="gal-overlay">
+          <span class="gal-tag">Escaleras</span>
+          <p>Moldajes a medida y accesos de obra</p>
+        </div>
+      </div>
+
+    </div>
+    <p class="gal-note" data-r>Imágenes referenciales de sistemas de encofrado. Solicítanos el registro fotográfico de obras ejecutadas.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SISTEMAS / MARCAS
+════════════════════════════════════════════ -->
+<section id="sistemas">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag" data-r>Compatibilidad</span>
+      <h2 data-r class="t1">Trabajamos los <span class="hl">principales sistemas</span> del mercado</h2>
+      <p data-r class="t2">Suministramos equipos y componentes compatibles con los sistemas más usados en Chile. Si tu obra ya partió con una marca, complementamos el stock sin cambiar de sistema.</p>
+    </div>
+    <div class="mg">
+      <div class="mc" data-r><span class="mn">PERI</span><span class="mdesc">Muro, losa, trepante y andamio</span></div>
+      <div class="mc t1" data-r><span class="mn">Doka</span><span class="mdesc">Framax, Dokaflex y trepantes</span></div>
+      <div class="mc t2" data-r><span class="mn">ULMA</span><span class="mdesc">Orma, Comain y CC-4</span></div>
+      <div class="mc t3" data-r><span class="mn">Alsina</span><span class="mdesc">Alisply y mesas de losa</span></div>
+      <div class="mc" data-r><span class="mn">Unispan</span><span class="mdesc">Aluminio monolítico y andamio</span></div>
+      <div class="mc t1" data-r><span class="mn">RMD Kwikform</span><span class="mdesc">Apuntalamiento y obra civil</span></div>
+      <div class="mc t2" data-r><span class="mn">MJ Gerüst</span><span class="mdesc">Combi, Uni y Optima</span></div>
+      <div class="mc t3" data-r><span class="mn">Layher</span><span class="mdesc">Allround y fachada</span></div>
+      <div class="mc" data-r><span class="mn">MEVA</span><span class="mdesc">Mammut y AluFix</span></div>
+      <div class="mc t1" data-r><span class="mn">EFCO</span><span class="mdesc">Obra civil pesada</span></div>
+      <div class="mc t2" data-r><span class="mn">Faresin</span><span class="mdesc">Aluminio y losa</span></div>
+      <div class="mc t3" data-r><span class="mn">Scafom-RUX</span><span class="mdesc">Modular y de marco</span></div>
+    </div>
+    <p class="mnote" data-r>Las marcas mencionadas son propiedad de sus respectivos titulares. Encofrados Vera es una empresa independiente de arriendo y venta de moldajes; la referencia a estos sistemas indica compatibilidad técnica, no representación comercial.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     VENTAJAS
+════════════════════════════════════════════ -->
+<section id="ventajas">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag" data-r>¿Por qué Encofrados Vera?</span>
+      <h2 data-r class="t1">La diferencia está en <span class="hl">los detalles</span></h2>
+      <p data-r class="t2">Venimos del mundo del andamio industrial y la logística en faena. Sabemos que un moldaje que llega incompleto detiene una obra entera.</p>
+    </div>
+    <div class="vg">
+      <div class="vc" data-r>
+        <div class="vi">📐</div>
+        <div><div class="vtitle">Plano de Despiece Incluido</div><div class="vd">Analizamos tus planos y entregamos el despiece del moldaje: cantidad exacta de paneles, anclajes y accesorios por etapa. Sin sobrestock ni faltantes en terreno.</div></div>
+      </div>
+      <div class="vc t1" data-r>
+        <div class="vi">📦</div>
+        <div><div class="vtitle">Equipo Completo y Revisado</div><div class="vd">Cada despacho sale con checklist de piezas críticas: grapas, alineadores, husillos y consumibles. Placa fenólica revisada y repuesta cuando corresponde.</div></div>
+      </div>
+      <div class="vc" data-r>
+        <div class="vi">🚛</div>
+        <div><div class="vtitle">Flota Propia de Transporte</div><div class="vd">Ramplas, camiones pluma y grúas horquilla propios para cargar, despachar y mover el material dentro de faena. Sin depender de terceros para el flete.</div></div>
+      </div>
+      <div class="vc t1" data-r>
+        <div class="vi">👷</div>
+        <div><div class="vtitle">Asesoría en Terreno</div><div class="vd">Acompañamos el primer armado y capacitamos a la cuadrilla en el uso correcto del sistema, presiones admisibles y secuencia de descimbre.</div></div>
+      </div>
+      <div class="vc" data-r>
+        <div class="vi">🔄</div>
+        <div><div class="vtitle">Arriendo Flexible</div><div class="vd">Contratos por etapa, por mes o por proyecto completo, con ampliación y devolución parcial de equipo según avance real de la obra.</div></div>
+      </div>
+      <div class="vc t1" data-r>
+        <div class="vi">📋</div>
+        <div><div class="vtitle">Respaldo Documental</div><div class="vd">Fichas técnicas, memorias de cálculo de apuntalamiento, certificados y guías de despacho valorizadas para el control administrativo de tu obra.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     INDUSTRIAS
+════════════════════════════════════════════ -->
+<section id="industrias">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag" data-r>Sectores que atendemos</span>
+      <h2 data-r class="t1">Presentes en cada <span class="hl">tipo de obra</span></h2>
+    </div>
+    <div class="ig">
+      <div class="ic" data-r><div class="ii">🏙️</div><div class="in">Edificación en Altura</div></div>
+      <div class="ic t1" data-r><div class="ii">🏘️</div><div class="in">Vivienda y Loteos</div></div>
+      <div class="ic t2" data-r><div class="ii">🌉</div><div class="in">Obra Civil y Puentes</div></div>
+      <div class="ic t3" data-r><div class="ii">⛏️</div><div class="in">Minería</div></div>
+      <div class="ic" data-r><div class="ii">⚡</div><div class="in">Energía</div></div>
+      <div class="ic t1" data-r><div class="ii">🏭</div><div class="in">Industria y Plantas</div></div>
+      <div class="ic t2" data-r><div class="ii">🚢</div><div class="in">Puertos y Astilleros</div></div>
+      <div class="ic t3" data-r><div class="ii">🛣️</div><div class="in">Infraestructura Vial</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PROCESO
+════════════════════════════════════════════ -->
+<section id="proceso">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag" data-r>Cómo funciona</span>
+      <h2 data-r class="t1">Del plano al hormigón, <span class="hl">sin burocracia</span></h2>
+      <p data-r class="t2">En 4 pasos tienes el moldaje montado en tu obra.</p>
+    </div>
+    <div class="ps" data-r>
+      <div class="pst"><div class="pn">01</div><div class="pt">Envías tus planos</div><div class="pd">Formulario, correo o WhatsApp. Con la planta y los cortes basta para dimensionar el equipo.</div></div>
+      <div class="pst"><div class="pn">02</div><div class="pt">Despiece y cotización</div><div class="pd">Preparamos el despiece por etapa y te enviamos la cotización valorizada en menos de 24 horas hábiles.</div></div>
+      <div class="pst"><div class="pn">03</div><div class="pt">Despacho a faena</div><div class="pd">Coordinamos el flete con flota propia. El equipo llega revisado, con guía valorizada y listado de piezas.</div></div>
+      <div class="pst"><div class="pn">04</div><div class="pt">Montaje y soporte</div><div class="pd">Acompañamos el primer armado, capacitamos a la cuadrilla y respondemos durante todo el arriendo.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     EQUIPO
+════════════════════════════════════════════ -->
+<section id="equipo">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag" data-r>Quiénes somos</span>
+      <h2 data-r class="t1">El equipo detrás de <span class="hl">Encofrados Vera</span></h2>
+      <p data-r class="t2">Un equipo con experiencia real en obra, no sólo en catálogo.</p>
+    </div>
+    <div class="eq">
+      <div class="ec" data-r>
+        <div class="eph">
+          <img src="/images/equipo/eric-zamora.jpg" alt="Eric Zamora, Gerente General de Encofrados Vera" loading="lazy" width="600" height="600"/>
+        </div>
+        <div class="ename">Eric Zamora</div>
+        <div class="erol">Gerente General</div>
+        <div class="edat">
+          <a href="mailto:eric.zamora@encofradosvera.cl">eric.zamora@encofradosvera.cl</a>
+          <a href="tel:+56959852568">+56 9 5985 2568</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     COBERTURA
+════════════════════════════════════════════ -->
+<section id="cobertura">
+  <div class="wrap">
+    <div class="cl">
+      <div class="ct" data-r>
+        <span class="tag">Cobertura nacional</span>
+        <h2>Despachamos <span class="hl">en todo Chile</span></h2>
+        <p>Con oficinas y bodegas en las zonas de mayor actividad constructiva e industrial, coordinamos el despacho de moldaje con tiempos de respuesta competitivos sin importar dónde esté tu obra.</p>
+        <p>Retiro en bodega sin costo y despacho valorizado según distancia y tonelaje.</p>
+        <a href="#contacto" class="bp" style="margin-top:8px;display:inline-flex">Consultar disponibilidad</a>
+      </div>
+      <div class="cz t1" data-r>
+        <div class="zi"><div class="zd"></div><div><div class="zn">Santiago – Región Metropolitana</div><div class="zdt">Oficina Principal · Av. Ossa 235, Of. 1265, La Reina</div></div></div>
+        <div class="zi"><div class="zd"></div><div><div class="zn">Lonquén – Calera de Tango</div><div class="zdt">Bodega y patio de acopio · Ruta G-30 2780</div></div></div>
+        <div class="zi"><div class="zd"></div><div><div class="zn">Concepción – Biobío</div><div class="zdt">Oficina Regional · Av. Camino del Árbol 405, San Pedro de la Paz</div></div></div>
+        <div class="zi"><div class="zd"></div><div><div class="zn">Antofagasta – Norte Grande</div><div class="zdt">Bodega y Oficina · Flourita 588, Antofagasta</div></div></div>
+        <div class="zi zi-dim"><div class="zd zd-dim"></div><div><div class="zn zn-dim">Otras regiones</div><div class="zdt">Consulta disponibilidad y logística a tu faena</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CTA BANNER
+════════════════════════════════════════════ -->
+<section id="cta">
+  <div class="wrap">
+    <div class="ci">
+      <span class="tag" data-r>Hablemos hoy</span>
+      <h2 data-r class="t1">¿Listo para hormigonar tu <span class="hl">próxima etapa</span>?</h2>
+      <p data-r class="t2">Envíanos tus planos y te devolvemos el despiece con la cotización. Sin compromiso.</p>
+      <div class="ca" data-r>
+        <a href="#contacto" class="bp">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          Solicitar cotización gratis
+        </a>
+        <a href="tel:+56974764806" class="bg">📞 Llamar ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CONTACTO
+════════════════════════════════════════════ -->
+<section id="contacto">
+  <div class="wrap">
+    <div class="col">
+
+      <div class="coi" data-r>
+        <span class="tag">Contacto</span>
+        <h2>Hablemos sobre tu <span class="hl">obra</span></h2>
+        <p>Nuestro equipo comercial está disponible para dimensionar tu requerimiento y elaborar una propuesta a medida.</p>
+
+        <div class="cocard">
+          <div class="cocard-rol">Gerente Comercial</div>
+          <div class="cocard-nom">Cristián Vera</div>
+          <a class="cocard-lnk" href="mailto:cristian.vera@encofradosvera.cl">cristian.vera@encofradosvera.cl</a>
+          <a class="cocard-lnk" href="tel:+56974764806">+56 9 7476 4806</a>
+        </div>
+
+        <div class="coitem"><div class="coico">📞</div><div class="cotx"><span>Teléfono</span><strong>+56 9 7476 4806</strong></div></div>
+        <div class="coitem"><div class="coico">✉️</div><div class="cotx"><span>Email</span><strong>cristian.vera@encofradosvera.cl</strong></div></div>
+        <div class="coitem"><div class="coico">📍</div><div class="cotx"><span>Oficina Principal</span><strong>Av. Ossa 235, Of. 1265, La Reina, Santiago</strong></div></div>
+        <div class="coitem"><div class="coico">🕐</div><div class="cotx"><span>Horario</span><strong>Lunes a Viernes · 08:30 – 18:00 hrs</strong></div></div>
+      </div>
+
+      <div class="cof t1" data-r>
+        <h3>Solicita tu cotización</h3>
+        <div class="fr">
+          <div class="fg2"><label for="f-nombre">Nombre *</label><input id="f-nombre" type="text" placeholder="Tu nombre"/></div>
+          <div class="fg2"><label for="f-empresa">Empresa</label><input id="f-empresa" type="text" placeholder="Razón social"/></div>
+        </div>
+        <div class="fr">
+          <div class="fg2"><label for="f-email">Email *</label><input id="f-email" type="email" placeholder="correo@empresa.cl"/></div>
+          <div class="fg2"><label for="f-tel">Teléfono</label><input id="f-tel" type="tel" placeholder="+56 9 XXXX XXXX"/></div>
+        </div>
+        <div class="fg2">
+          <label for="f-equipo">Sistema requerido *</label>
+          <select id="f-equipo">
+            <option value="">Selecciona un sistema...</option>
+            <% sistemas.forEach(function(s){ %>
+            <option><%= s %></option>
+            <% }); %>
+          </select>
+        </div>
+        <div class="fr">
+          <div class="fg2"><label for="f-obra">Obra / Ubicación</label><input id="f-obra" type="text" placeholder="Nombre de la obra y comuna"/></div>
+          <div class="fg2"><label for="f-m2">m² aprox. de moldaje</label><input id="f-m2" type="text" placeholder="Ej: 800 m²"/></div>
+        </div>
+        <div class="fg2"><label for="f-msg">Mensaje</label><textarea id="f-msg" placeholder="Describe tu obra: tipo de elemento, altura de vaciado, plazo estimado, si necesitas asesoría de despiece..."></textarea></div>
+
+        <!-- CAPTCHA Turnstile -->
+        <% if (turnstileSiteKey) { %>
+        <div class="fg2">
+          <div class="cf-turnstile"
+              data-sitekey="<%= turnstileSiteKey %>"
+              data-theme="dark"
+              data-size="normal">
+          </div>
+        </div>
+        <% } %>
+
+        <button class="fsub" id="submitBtn">
+          Enviar solicitud de cotización →
+        </button>
+        <p class="fnote">Respuesta en menos de 24 horas hábiles · Sin compromiso</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div class="fbr">
+        <a href="#" class="logo">
+          <img src="/images/logo-vera-blanco.png" alt="Encofrados Vera" class="logo-img" width="200" height="73"/>
+        </a>
+        <p>Arriendo y venta de moldajes y encofrados en Chile. Equipo revisado, asesoría técnica de despiece y flota propia de transporte.</p>
+      </div>
+      <div class="fcol">
+        <h4>Productos</h4>
+        <ul>
+          <li><a href="#productos">Moldaje de Muro</a></li>
+          <li><a href="#productos">Moldaje de Losa</a></li>
+          <li><a href="#productos">Columnas y Pilares</a></li>
+          <li><a href="#productos">Puntales y Torres</a></li>
+          <li><a href="#productos">Andamios</a></li>
+          <li><a href="#productos">Vigas H20 y Tableros</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#sistemas">Sistemas compatibles</a></li>
+          <li><a href="#ventajas">Por qué elegirnos</a></li>
+          <li><a href="#industrias">Industrias</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#equipo">Nuestro equipo</a></li>
+          <li><a href="#cobertura">Cobertura</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="#contacto">Solicitar cotización</a></li>
+          <li><a href="tel:+56974764806">+56 9 7476 4806</a></li>
+          <li><a href="mailto:cristian.vera@encofradosvera.cl">cristian.vera@encofradosvera.cl</a></li>
+          <li><a href="mailto:eric.zamora@encofradosvera.cl">eric.zamora@encofradosvera.cl</a></li>
+          <li><a href="#cobertura">Nuestras oficinas</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fb">
+      <p>© <%= year %> ENCOFRADOS VERA · Todos los derechos reservados</p>
+      <div class="soc">
+        <a href="#" class="sl" title="LinkedIn">💼</a>
+        <a href="#" class="sl" title="Instagram">📸</a>
+        <a href="https://wa.me/56974764806" target="_blank" rel="noopener" class="sl" title="WhatsApp">💬</a>
+      </div>
+    </div>
+
+    <div style="text-align:center;padding:20px 0 0;border-top:1px solid rgba(255,255,255,0.08);margin-top:20px">
+      <a href="https://tsugi.cl" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;
+                background:linear-gradient(135deg,#C9A84C,#A8853A);
+                padding:10px 24px;border-radius:4px;
+                font-size:12px;font-weight:700;letter-spacing:0.08em;
+                color:#0A0A0A;font-family:Arial,sans-serif;
+                box-shadow:0 4px 16px rgba(201,168,76,0.4)">
+        <span style="font-size:18px">継</span>
+        DESARROLLADO POR TSUGI
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     MODAL ÉXITO
+════════════════════════════════════════════ -->
+<div class="mo" id="mo">
+  <div class="md">
+    <div class="mi">✅</div>
+    <h3>¡Cotización enviada!</h3>
+    <p>Hemos recibido tu solicitud. Te contactaremos en menos de 24 horas hábiles.</p>
+    <button class="bp" id="closeModalBtn" style="width:100%;justify-content:center;margin-top:8px">Entendido</button>
+  </div>
+</div>
+
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/56974764806" target="_blank" rel="noopener" class="wa-btn" aria-label="Contactar por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script src="/js/landing.js"></script>
+</body>
+</html>
