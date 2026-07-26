@@ -165,8 +165,8 @@ app.post('/cotizar', quoteLimiter, async (req, res) => {
     }
   }
 
-  // Validar campos
-  if (!nombre || !email || !equipo) {
+  // Validar campos requeridos
+  if (!nombre || !email || !telefono || !equipo) {
     return res.status(400).json({ ok: false, message: 'Faltan campos requeridos.' });
   }
   // Consentimiento obligatorio (Ley 21.719)
@@ -176,6 +176,11 @@ app.post('/cotizar', quoteLimiter, async (req, res) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return res.status(400).json({ ok: false, message: 'Email inválido.' });
+  }
+  // Teléfono: exactamente 9 dígitos comenzando por 9 (sin +, sin +56, sin espacios).
+  const telRegex = /^9\d{8}$/;
+  if (!telRegex.test(String(telefono).trim())) {
+    return res.status(400).json({ ok: false, message: 'Teléfono inválido. Debe tener 9 dígitos y comenzar con 9.' });
   }
   if (!SISTEMAS_VALIDOS.includes(equipo)) {
     return res.status(400).json({ ok: false, message: 'Sistema no válido.' });
@@ -219,7 +224,7 @@ app.post('/cotizar', quoteLimiter, async (req, res) => {
             ${fila('Sistema requerido', esc(equipo), true)}
             ${fila('Obra / Ubicación', esc(obra) || '—')}
             ${fila('m² aprox. de moldaje', esc(m2) || '—')}
-            ${fila('Consentimiento', 'Aceptado · ' + fechaHora)}
+            ${fila('Consentimiento', '✔ Aceptó la Política de Privacidad (Ley 21.719)<br><span style="color:#6b7280;font-size:12px">Registrado el ' + fechaHora + ' (hora de Santiago)</span>')}
             ${fila('Mensaje', esc(mensaje) || '—')}
           </table>
         </div>

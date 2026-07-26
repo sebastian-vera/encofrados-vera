@@ -88,10 +88,9 @@ function abrirCookies() { ckShowBanner(); }
 function validaEmail(v) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v || '').trim());
 }
-// Teléfono chileno: acepta +56, espacios y guiones. Exige 8–9 dígitos útiles.
+// Teléfono chileno: exactamente 9 dígitos comenzando por 9. Sin +, sin +56, sin espacios.
 function validaTelefono(v) {
-  const d = (v || '').replace(/\D/g, '').replace(/^56/, '');
-  return /^\d{8,9}$/.test(d);
+  return /^9\d{8}$/.test((v || '').trim());
 }
 // RUT chileno con dígito verificador (módulo 11)
 function limpiaRut(v) { return (v || '').replace(/[^0-9kK]/g, '').toUpperCase(); }
@@ -126,7 +125,7 @@ const MSG = {
   'f-nombre': 'Ingresa tu nombre.',
   'f-rut':    'RUT inválido. Revisa el dígito verificador.',
   'f-email':  'Email inválido. Ej: nombre@empresa.cl',
-  'f-tel':    'Teléfono inválido. Ej: +56 9 1234 5678',
+  'f-tel':    'Teléfono inválido. Debe tener 9 dígitos y comenzar con 9 (ej: 912345678).',
   'f-equipo': 'Selecciona el sistema que necesitas.',
 };
 
@@ -171,7 +170,10 @@ function validaCampo(id, { exigirLleno = true } = {}) {
     if (id === 'f-rut' && campo.value.trim()) campo.value = formateaRut(campo.value);
     validaCampo(id, { exigirLleno: false });   // no reclama si está vacío
   });
-  campo.addEventListener('input', () => clearErr(id)); // al reescribir, limpia
+  campo.addEventListener('input', () => {
+    if (id === 'f-tel') campo.value = campo.value.replace(/\D/g, '').slice(0, 9); // solo dígitos, máx 9
+    clearErr(id); // al reescribir, limpia
+  });
 });
 ['f-nombre', 'f-equipo'].forEach(id => {
   document.getElementById(id)?.addEventListener('input', () => clearErr(id));
