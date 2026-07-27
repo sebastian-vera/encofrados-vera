@@ -136,6 +136,8 @@ const SISTEMAS_VALIDOS = [
   'Vigas H20 y tableros fenólicos',
   'Accesorios y fijaciones',
   'Asesoría técnica / plano de despiece',
+  'Servicio de montaje con personal propio',
+  'Suministro + montaje integral (llave en mano)',
   'Múltiples sistemas'
 ];
 
@@ -143,7 +145,7 @@ const SISTEMAS_VALIDOS = [
 app.get('/', (req, res) => {
   res.render('landing', {
     title:            'Encofrados Vera | Arriendo y Venta de Moldajes y Encofrados en Chile',
-    description:      'Arriendo y venta de moldajes y encofrados para muros, losas, columnas y obra civil. Compatibles con los principales sistemas del mercado chileno. Asesoría en terreno y cobertura nacional.',
+    description:      'Arriendo, venta y montaje de moldajes y encofrados para muros, losas, columnas y obra civil. 250 montadores propios y servicio integral de principio a fin. Compatibles con los principales sistemas del mercado chileno.',
     year:             new Date().getFullYear(),
     sistemas:         SISTEMAS_VALIDOS,
     turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || ''
