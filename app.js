@@ -259,6 +259,9 @@ app.get('/privacidad', (req, res) => {
   res.render('privacidad', { year: new Date().getFullYear() });
 });
 
+app.get('/creditos', (req, res) => {
+  res.render('creditos');
+});
 
 // 404
 app.use((req, res) => res.redirect('/'));
